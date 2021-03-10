@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Lab: Access the Privileged Endpoint in Azure Stack Hub'
-    module: 'Module 4: Manage Infrastructure'
+    module: 'Module 5: Manage Infrastructure'
 ---
 
 # Lab - Access the Privileged Endpoint in Azure Stack Hub

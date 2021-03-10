@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Lab: Implement App Service Resource Provider in Azure Stack Hub'
-    module: 'Module 1: Provide Services'
+    module: 'Module 2: Provide Services'
 ---
 
 # Lab - Implement App Service Resource Provider in Azure Stack Hub

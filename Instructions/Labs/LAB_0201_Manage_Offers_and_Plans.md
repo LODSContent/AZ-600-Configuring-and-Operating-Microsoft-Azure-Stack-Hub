@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Lab: Manage offers and plans in Azure Stack Hub'
-    module: 'Module 1: Provide Services'
+    module: 'Module 2: Provide Services'
 ---
 
 # Lab - Manage offers and plans in Azure Stack Hub

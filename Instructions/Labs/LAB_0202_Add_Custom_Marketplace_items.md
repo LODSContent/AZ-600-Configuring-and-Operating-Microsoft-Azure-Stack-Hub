@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Lab: Add custom Marketplace Items by using Azure Gallery Packager'
-    module: 'Module 1: Provide Services'
+    module: 'Module 2: Provide Services'
 ---
 
 # Lab - Add custom Marketplace Items by using the Azure Gallery Packager

@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Lab: Register Azure Stack Hub with an Azure Subscription'
-    module: 'Module 2: Implement Data Center Integration'
+    module: 'Module 3: Implement Data Center Integration'
 ---
 
 # Lab - Register Azure Stack Hub with an Azure Subscription

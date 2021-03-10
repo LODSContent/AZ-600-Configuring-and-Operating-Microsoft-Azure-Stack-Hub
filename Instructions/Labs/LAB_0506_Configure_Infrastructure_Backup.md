@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Lab: Configure Azure Stack Hub Infrastructure Backup'
-    module: 'Module 4: Manage Infrastructure'
+    module: 'Module 5: Manage Infrastructure'
 ---
 
 # Lab - Configure Azure Stack Hub Infrastructure Backup

@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Lab: Manage Log Collection in Azure Stack Hub'
-    module: 'Module 4: Manage Infrastructure'
+    module: 'Module 5: Manage Infrastructure'
 ---
 
 # Lab - Manage Log Collection in Azure Stack Hub

@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Lab: Configure and manage Azure Stack Hub Storage Accounts'
-    module: 'Module 4: Manage Infrastructure'
+    module: 'Module 5: Manage Infrastructure'
 ---
 
 # Lab - Configure and manage Azure Stack Hub Storage Accounts

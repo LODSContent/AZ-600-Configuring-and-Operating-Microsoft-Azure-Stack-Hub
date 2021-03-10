@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Lab: Validate Azure Resource Manager (ARM) Templates with Azure Stack Hub'
-    module: 'Module 1: Provide Services'
+    module: 'Module 2: Provide Services'
 ---
 
 # Lab - Validate Azure Resource Manager (ARM) Templates with Azure Stack Hub

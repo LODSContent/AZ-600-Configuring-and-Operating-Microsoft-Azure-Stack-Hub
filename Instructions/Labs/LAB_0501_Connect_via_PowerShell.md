@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Lab: Connect to Azure Stack Hub via PowerShell'
-    module: 'Module 4: Manage Infrastructure'
+    module: 'Module 5: Manage Infrastructure'
 ---
 
 # Lab - Connect to Azure Stack Hub via PowerShell

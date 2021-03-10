@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Lab: Delegate Offer Management in Azure Stack Hub'
-    module: 'Module 3: Manage Identity and Access'
+    module: 'Module 4: Manage Identity and Access'
 ---
 
 # Lab - Delegate Offer Management in Azure Stack Hub
