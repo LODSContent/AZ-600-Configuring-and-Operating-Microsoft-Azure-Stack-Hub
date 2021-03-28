@@ -281,7 +281,7 @@ In this task, you will:
 - Review public IP address usage (as a cloud operator).
 
 1. Switch to the web browser window displaying the Azure Stack Hub administrator portal, where you are signed in as CloudAdmin@azurestack.local.
-1. In the Azure Stack Hub administrator portal, in the hub menu, click **Dashboard** and, on the Resource providers tile, click **Network**.
+1. In the Azure Stack Hub administrator portal, in the hub menu, click **Dashboard** and, on the **Resource providers** tile, click **Network**.
 1. On the **Network** blade, review again the **Public IP pools usage** graph and the numbers of used and free IP addresses.
 
     >**Note**: The numbers should have changed, reflecting additional 5 public IP addresses you created in the user subscription (as the user).
@@ -293,7 +293,10 @@ In this task, you will:
 - Add a public IP address pool
 
 1. In the web browser window displaying the Azure Stack Hub administrator portal, on the **Network** blade, click the **Public IP pools usage** tile.
-1. On the **Public IP pools** blade, click **+ Add IP pool**.
+
+    >**Note**: If the **Public IP pools** blade displays the message **The exclusive operation 'Startup' is in progress. Add node and add IP pool operations are disabled while the operation is running. Click here to view the activity log**, then you will need to wait until the 'Startup' operation completes before you proceed to the next step.
+
+1. On the **Public IP pools** blade, click **+ Add IP pool**. 
 1. On the **Add IP pool** blade, specify the following settings and click **Add**.
 
     - Name: **Public Pool 1**

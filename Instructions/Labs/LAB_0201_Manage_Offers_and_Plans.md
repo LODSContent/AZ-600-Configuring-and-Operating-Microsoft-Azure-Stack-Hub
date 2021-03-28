@@ -82,20 +82,20 @@ In this exercise, you will create Active Directory user accounts that you will b
 
 >**Review**: In this exercise, you have created the Active Directory user accounts you will use in this lab.
 
-### Exercise 1: Create an offer (as a cloud operator)
+### Exercise 1: Create offers (as a cloud operator)
 
 In this exercise, you will act as a cloud operator and create a plan consisting of the compute, storage, and network services as well as an offer containing this plan. Next, you will make the offer public, allowing users to create subscriptions based on this offer. 
 The exercise consists of the following tasks:
 
-1. Create a plan consisting of the compute, storage, and network services (as a cloud operator).
+1. Create plans consisting of the compute, storage, and network services (as a cloud operator).
 1. Create a public offer based on the plan (as a cloud operator)
 1. Create a private offer based on the plan (as a cloud operator)
 
-#### Task 1: Create a plan consisting of the compute, storage, and network services (as a cloud operator)
+#### Task 1: Create plans consisting of the compute, storage, and network services (as a cloud operator)
 
 In this task, you will:
 
-- Create a plan consisting of the compute, storage, and network services (as a cloud operator).
+- Create two plans consisting of the compute, storage, and network services (as a cloud operator).
 
 1. Within the Remote Desktop session to **AzS-HOST1**, open the web browser window displaying the [Azure Stack Hub administrator portal](https://adminportal.local.azurestack.external/) and sign in as CloudAdmin@azurestack.local.
 1. In the web browser window displaying the Azure Stack Hub administrator portal, click **+ Create a resource**.
@@ -109,35 +109,56 @@ In this task, you will:
 1. Click **Next: Services >**.
 1. On the **Services** tab of the **New plan** blade, select the **Microsoft.Compute**, **Microsoft.Storage**, and **Microsoft.Network** checkboxes.
 1. Click **Next: Quotas>**.
+1. On the **Quotas** tab of the **New plan** blade, specify the following settings
+
+    - Microsoft.Compute: **Default Quota**
+    - Microsoft.Storage: **Default Quota**
+    - Microsoft.Network: **Default Quota**
+
+1. Click **Review + create** and then click **Create**.
+
+    >**Note**: Wait for the deployment to complete. This should take just a few seconds.
+
+1. In the web browser window displaying the Azure Stack Hub administrator portal, click **+ Create a resource**.
+1. On the **New** blade, click **Offers + Plans** and then click **Plan**.
+1. On the **Basics** tab of the **New plan** blade, specify the following settings:
+
+    - Display name: **base-plan2**
+    - Resource name: **base-plan2**
+    - Resource group: the name of a new resource group **base-plans-RG**
+
+1. Click **Next: Services >**.
+1. On the **Services** tab of the **New plan** blade, select the **Microsoft.Compute**, **Microsoft.Storage**, and **Microsoft.Network** checkboxes.
+1. Click **Next: Quotas>**.
 1. On the **Quotas** tab of the **New plan** blade, next to the **Microsoft.Compute** drop-down list, click **Create New**.
 1. On the **Create Compute quota** blade, specify the following settings and click **OK**":
 
     - Name: **base-plan1-compute-quota**
-    - Number of virtual machines: **10**
-    - Number of virtual machine cores: **20**
-    - Number of availability sets: **5**
-    - Number of virtual machine scale sets: **2**
-    - Capacity (GB) of standard managed disks: **2048**
-    - Capacity (GB) of premium managed disks: **2048**
+    - Number of virtual machines: **40**
+    - Number of virtual machine cores: **100**
+    - Number of availability sets: **20**
+    - Number of virtual machine scale sets: **40**
+    - Capacity (GB) of standard managed disks: **4096**
+    - Capacity (GB) of premium managed disks: **4096**
 
 1. Back on the **Quotas** tab of the **New plan** blade, next to the **Microsoft.Storage** drop-down list, click **Create New**.
 1. On the **Create Storage quota** blade, specify the following settings and click **OK**":
 
     - Name: **base-plan1-storage-quota**
-    - Maximum capacity (GB): **300**
-    - Total number of storage accounts: **3**
+    - Maximum capacity (GB): **4096**
+    - Total number of storage accounts: **40**
 
 1. Back on the **Quotas** tab of the **New plan** blade, next to the **Microsoft.Network** drop-down list, click **Create New**.
 1. On the **Create Network quota** blade, specify the following settings and click **OK**":
 
     - Name: **base-plan1-network-quota**
-    - Max virtual networks: **2**
+    - Max virtual networks: **100**
     - Max virtual network gateways: **2**
-    - Network connections: **2**
-    - Max public IPs: **10**
-    - Max NICs 10**
-    - Max load balancers: **5**
-    - Max network security groups: **10**
+    - Network connections: **4**
+    - Max public IPs: **100**
+    - Max NICs: **200**
+    - Max load balancers: **100**
+    - Max network security groups: **100**
 
 1. Click **Review + create** and then click **Create**.
 
@@ -184,7 +205,7 @@ In this task, you will:
     - Make this offer public: **No**
 
 1. Click **Next: Base plans >**. 
-1. On the **Base plans** tab of the **Create a new offer** blade, select the checkbox next to the **base-plan1** entry.
+1. On the **Base plans** tab of the **Create a new offer** blade, select the checkbox next to the **base-plan2** entry.
 1. Click **Next: Add-on plans >**.
 1. Leave **Add-on plans** settings with their default values, click **Review + create** and then click **Create**.
 
@@ -249,7 +270,7 @@ In this task, you will:
 
 1. Within the Remote Desktop session to **AzS-HOST1**, start an InPrivate session of the web browser.
 1. In the web browser window, navigate to the [Azure Stack Hub user portal](https://portal.local.azurestack.external) and sign in as **t1u2@azurestack.local** with the password **Pa55w.rd**.
-1. In the Azure Stack Hub user portal, in the hub menu, select **Subscriptions**.
+1. In the Azure Stack Hub user portal, in the hub menu, select **All services** and then, on the **All services** blade, **Subscriptions**.
 1. On the **Subscriptions** blade, select **t1u2-base-subscription1**.
 1. On the **t1u2-base-subscrption1** blade, click **Resources**.
 1. On the **t1u2-base-subscrption1 - Resources** blade, click **+ Add**.
@@ -287,14 +308,14 @@ In this task, you will:
 1. On the **Offers + Plans** blade, click **Plan**.
 1. On the **New plan** blade, specify the following settings:
 
-    - Display name: **add-on-plan1**
-    - Resource name: **add-on-plan1**
+    - Display name: **add-on-plan2**
+    - Resource name: **add-on-plan2**
     - Resource group: the name of a new resource group **add-on-plans-RG**
 
 1. Click **Next: Services >**.
 1. On the **Services** tab of the **New plan** blade, select the **Microsoft.KeyVault** checkbox.
 1. Click **Next: Quotas>**.
-1. On the **Quotas** tab of the **New plan** blade, in the **Microsoft.Compute** drop-down list, select **Unlimited**.
+1. On the **Quotas** tab of the **New plan** blade, in the **Microsoft.KeyVault** drop-down list, select **Unlimited**.
 1. Click **Review + create** and then click **Create**.
 
     >**Note**: Wait for the deployment to complete. This should take just a few seconds.
@@ -310,12 +331,12 @@ In this task, you will:
 1. In the list of resources, search for and select **base-offer2**.
 1. On the **base-offer2** blade, select **Add-on plans**.
 1. On the **base-offer2 \| Add-on plans** blade, click **+ Add**.
-1. On the **Plan** blade, click the **add-on-plan1** and click **Select**. 
+1. On the **Plan** blade, click the **add-on-plan2** and click **Select**. 
 
 >**Review**: In this exercise, you have created an add-on plan and assigned it to an existing offer associated with the subscription of the second user.
 
 
-### Exercise 4: Check availability of the add-on plan (as users)
+### Exercise 4: Check availability of the add-on plan (as the second user)
 
 In this exercise, you will act as users who signed up for the offer you created in the first exercise and created new subscriptions. The exercise consists of the following tasks:
 
@@ -328,14 +349,15 @@ In this task, you will:
 
 - Check availability of the add-on plan (as the second user)
 
-1. Within the Remote Desktop session to **AzS-HOST1**, in the InPrivate session of a web browser displaying the Azure Stack Hub user portal where you are signed in as t1u2@azurestack.local, refresh the browser window.
-1. In the hub menu, click **All services**.
+1. Within the Remote Desktop session to **AzS-HOST1**, start an InPrivate session of the web browser.
+1. In the web browser window, navigate to the [Azure Stack Hub user portal](https://portal.local.azurestack.external) and sign in as **t1u1@azurestack.local** with the password **Pa55w.rd**.
+1. In the hub menu of the Azure Stack Hub user portal, click **All services**.
 1. In the list of services, click **Subscriptions**.
 1. On the **Subscriptions** blade, click **t1u2-base-subscription1**.
 1. On the **t1u2-base-subscription1** blade, click **+ Add plan**.
-1. On the **Add plan** blade, select **add-on-plan1**.
+1. On the **Add plan** blade, select **add-on-plan2**. If propmted, refresh the web browser page displaying the Azure Stack user portal.
 1. Back on the **t1u2-base-subscription1** blade, click **Add-on plans**.
-1. On the **t1u2-base-subscription2 | Add-on plans** blade, note the entry representing the **add-on-plan1**.
+1. On the **t1u2-base-subscription2 | Add-on plans** blade, note the entry representing the **add-on-plan2**.
 
 #### Task 2: Verify the functionality of the add-on plan (as the second user)
 

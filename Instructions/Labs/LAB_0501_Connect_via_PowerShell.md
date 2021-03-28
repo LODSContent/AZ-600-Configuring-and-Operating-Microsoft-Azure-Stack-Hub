@@ -86,7 +86,16 @@ In this task, you will:
 
     >**Note**: If you receive an error message regarding in-use modules, close the Windows PowerShell session, re-open it, and rerun the above commands.
 
-1. Within the Remote Desktop session to **AzS-HOST1**, start File Explorer and delete all the folders which names start with **Azure**, **Az** or **Azs** from the **C:\\Program Files\\WindowsPowerShell\\Modules** and **C:\\Users\\AzureStackAdmin\\Documents\\PowerShell\\Modules\\** folders.
+1. From the **Administrator: Windows PowerShell** prompt, run the following to delete all the folders which names start with **Azure**, **Az** or **Azs** from the **C:\\Program Files\\WindowsPowerShell\\Modules** and **C:\\Users\\AzureStackAdmin\\Documents\\PowerShell\\Modules\\** folders.
+
+    ```powershell
+    Get-ChildItem -Path 'C:\Program Files\WindowsPowerShell\Modules' -Include 'Az*' -Recurse -Force | Remove-Item -Force -Recurse
+    Get-ChildItem -Path 'C:\Users\AzureStackAdmin\Documents\PowerShell\Modules' -Include 'Az*' -Recurse -Force | Remove-Item -Force -Recurse
+    ```
+
+    >**Note**: If you receive an error message regarding in-use modules, close the Windows PowerShell session, re-open it, and rerun the above commands.
+
+
 1. Within the Remote Desktop session to **AzS-HOST1**, start Microsoft Edge, navigate to the [PowerShell releases page](https://github.com/PowerShell/PowerShell/releases/tag/v7.1.2). 
 1. From the [PowerShell releases page](https://github.com/PowerShell/PowerShell/releases/tag/v7.1.2) page, download and install the latest release of PowerShell. 
 1. Within the Remote Desktop session to **AzS-HOST1**, start PowerShell 7 as administrator.
@@ -166,6 +175,7 @@ In this task, you will:
     ```
 
 1. In the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, review the resulting message, open a web browser window, navigate to the [adfs.local.azurestack.external](https://adfs.local.azurestack.external/adfs/oauth2/deviceauth) page, type the code included in the reviewed message, and click **Continue**. 
+
 1. When prompted, sign in by using the following credentials:
 
     - Username: **CloudAdmin@azurestack.local**
@@ -216,7 +226,7 @@ In this task, you will:
     Connect-AzAccount -EnvironmentName 'AzureStackUser'
     ```
 
-    >**Note**: This will automatically open a web browser window, prompting you for the AzureStack\CloudAdmin credentials.
+    >**Note**: This will automatically open a web browser window prompting you to authenticate.
 
 1. When prompted, sign in by using the following credentials:
 

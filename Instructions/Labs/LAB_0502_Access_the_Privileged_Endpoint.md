@@ -66,7 +66,7 @@ In this task, you will:
     - Password: **Pa55w.rd1234**
 
 1. Within the Remote Desktop session to **AzS-HOST1**, start PowerShell ISE as administrator.
-1. From the **Administrator: Windows PowerShell ISE** console, run the following to identify the IP address of the infrastructure VM running the privileged endpoint:
+1. From the **Administrator: Windows PowerShell ISE** console, run the following to identify the IP address of the infrastructure VM running the privileged endpoint: 
 
     ```powershell
     $ipAddress = (Resolve-DnsName -Name AzS-ERCS01).IPAddress
@@ -126,7 +126,7 @@ In this task, you will:
 1. From the PowerShell Remoting session in the **Administrator: Windows PowerShell ISE** window, run the following to validate update readiness of Azure Stack Hub and review the results:
 
     ```powershell
-    Test-AzureStack -Group UpdateReadiness
+    Test-AzureStack -Group UpdateReadiness 
     ```
 
     >**Note**: Keep in mind that ASDK does not support updates, so this is strictly for demonstration purposes. 

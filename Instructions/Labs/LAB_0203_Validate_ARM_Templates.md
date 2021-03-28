@@ -95,6 +95,20 @@ In this task, you will:
 
     >**Note**: Disregard any error messages regarding already available commands.
 
+1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to register your Azure Stack Hub operator PowerShell environment:
+
+    ```powershell
+    Add-AzEnvironment -Name 'AzureStackAdmin' -ArmEndpoint 'https://adminmanagement.local.azurestack.external' `
+       -AzureKeyVaultDnsSuffix adminvault.local.azurestack.external `
+       -AzureKeyVaultServiceEndpointResourceId https://adminvault.local.azurestack.external
+
+1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to sign in to the newly registered **AzureStackAdmin** environment:
+
+    ```powershell
+    Connect-AzAccount -EnvironmentName 'AzureStackAdmin'
+    ```
+
+1. If prompted, authenticate with the **CloudAdmin@azurestack.local** account.
 1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to download the Azure Stack Tools:
 
     ```powershell
@@ -110,7 +124,7 @@ In this task, you will:
 1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to import the AzureRM.CloudCapabilities PowerShell module:
 
     ```powershell
-    Import-Module .\CloudCapabilities\Az.CloudCapabilities.psm1
+    Import-Module .\CloudCapabilities\Az.CloudCapabilities.psm1 -Force
     ```
 
 1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to generate a cloud capabilities JSON file: 
@@ -123,7 +137,6 @@ In this task, you will:
 
 1. Within the Remote Desktop session to **AzS-HOST1**, start File Explorer, navigate to the **C:\\Templates** folder and verify that the file **AzureCloudCapabilities.Json** has been successfully created.
 
-
 #### Task 2: Run a successful template validation
 
 In this task, you will:
@@ -132,11 +145,8 @@ In this task, you will:
 
 1. Within the Remote Desktop session to **AzS-HOST1**, start a web browser and navigate to the Azure Stack Hub QuickStart Templates repository [**MySql Server on Windows for AzureStack** page](https://github.com/Azure/AzureStack-QuickStart-Templates/tree/master/mysql-standalone-server-windows). 
 1. On the **MySql Server on Windows for AzureStack** page, click **azuredeploy.json**.
-1. On the [AzureStack-QuickStart-Templates/mysql-standalone-server-windows/azuredeploy.json](https://github.com/Azure/AzureStack-QuickStart-Templates/blob/master/mysql-standalone-server-windows/azuredeploy.json) page, click **Raw**.
-1. Select the entire content of the web page, right click the selection, and click **Copy**.
-1. Switch to the File Explorer window displaying the content of the **C:\\Templates** folder, create a new file named **sampletemplate1.json**, paste the copied content into it, and save the file.
-
-    >**Note**: Alternatively, you can run the following command in order to directly download the content of the QuickStart template and save it as the **sampletemplate1.json** file.
+1. On the [AzureStack-QuickStart-Templates/mysql-standalone-server-windows/azuredeploy.json](https://github.com/Azure/AzureStack-QuickStart-Templates/blob/master/mysql-standalone-server-windows/azuredeploy.json) page, review the content of the template.
+1. Switch to the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window and run the following to download the azuredeploy.json file and save it as a file named **sampletemplate1.json** in the **C:\\Templates** folder.
 
     ```powershell
     Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/Azure/AzureStack-QuickStart-Templates/master/mysql-standalone-server-windows/azuredeploy.json' -UseBasicParsing -OutFile $path\sampletemplate1.json
@@ -146,7 +156,7 @@ In this task, you will:
 
     ```powershell
     Set-Location -Path 'C:\AzureStack-Tools-az\TemplateValidator'
-    Import-Module .\AzureRM.TemplateValidator.psm1
+    Import-Module .\AzureRM.TemplateValidator.psm1 -Force
     ```
   
 1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to validate the template:
@@ -185,22 +195,25 @@ In this task, you will:
 
 1. Within the Remote Desktop session to **AzS-HOST1**, from the web browser displaying the AzureStack QuickStart Templates repository, navigate to the Azure QuickStart Templates repository [**MySQL Server 5.6 on Ubuntu VM** page](https://github.com/Azure/azure-quickstart-templates/tree/master/mysql-standalone-server-ubuntu)
 1. On the **MySQL Server 5.6 on Ubuntu VM** page, click **azuredeploy.json**.
-1. On the [azure-quickstart-templates/mysql-standalone-server-ubuntu/azuredeploy.json](https://github.com/Azure/azure-quickstart-templates/blob/master/mysql-standalone-server-ubuntu/azuredeploy.json) page, click **Raw**.
-1. Select the entire content of the web page, right click the selection, and click **Copy**.
-1. Switch to the File Explorer window displaying the content of the **C:\\Templates** folder, create a new file named **sampletemplate2.json**, paste the copied content into it.
-
-    >**Note**: Alternatively, you can run the following command in order to directly download the content of the QuickStart template and save it as the **sampletemplate2.json** file.
+1. On the [azure-quickstart-templates/mysql-standalone-server-ubuntu/azuredeploy.json](https://github.com/Azure/azure-quickstart-templates/blob/master/mysql-standalone-server-ubuntu/azuredeploy.json) page, review the content of the template.
+1. Switch to the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window and run the following to download the azuredeploy.json file and save it as a file named **sampletemplate2.json** in the **C:\\Templates** folder.
 
     ```powershell
     Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mysql-standalone-server-ubuntu/azuredeploy.json' -UseBasicParsing -OutFile $path\sampletemplate2.json
     ```
 
 1. Within the Remote Desktop session to **AzS-HOST1**, in the web browser, navigate to the REST API reference for [Virtual Machines](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachines) and identify the latest Azure API version (**2020-12-01** at the time of authoring this content). 
-1. Switch to the **sampletemplate2.json** file and locate the section representing the virtual machine resource in the the `resources` section of the template, which has the following format:
+1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to open the **sampletemplate2.json** file in Notepad.
+
+    ```powershell
+    notepad.exe $path\sampletemplate2.json
+    ```
+
+1. In the Notepad window displaying the content of the **sampletemplate2.json** file, locate the section representing the virtual machine resource in the `resources` section of the template, which has the following format:
 
     ```json
     {
-      "apiVersion": "2018-03-30",
+      "apiVersion": "2017-03-30",
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[variables('vmName')]",
       "location": "[parameters('location')]",
@@ -228,7 +241,7 @@ In this task, you will:
       ],
     ```
 
-    >**Note**: This intentionally introduces a configuration which is not supported in Azure Stack Hub.
+    >**Note**: This intentionally introduces a configuration which is not yet supported in Azure Stack Hub.
 
 1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to validate the newly modified template:
 

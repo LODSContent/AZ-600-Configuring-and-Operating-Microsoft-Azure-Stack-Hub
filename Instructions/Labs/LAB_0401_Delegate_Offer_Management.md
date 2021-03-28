@@ -104,7 +104,7 @@ In this exercise, you will act as a cloud operator and create a plan consisting 
 1. Create a new subscription containing the offer (as a delegated provider)
 
 
-#### Task 1: Create an plan consisting of the Subscription service (as a cloud operator)
+#### Task 1: Create a plan consisting of the Subscription service (as a cloud operator)
 
 In this task, you will:
 

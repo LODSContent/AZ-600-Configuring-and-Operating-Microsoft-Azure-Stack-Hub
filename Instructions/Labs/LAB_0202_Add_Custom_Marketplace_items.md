@@ -7,7 +7,7 @@ lab:
 # Lab - Add custom Marketplace Items by using the Azure Gallery Packager
 # Student lab manual
 
-## Lab depedndencies
+## Lab dependencies
 
 - None 
 
@@ -159,6 +159,13 @@ In this task, you will:
 - Regenerate the newly customized Azure Gallery Packager package.
 
 1. Within the Remote Desktop session to **AzS-HOST1**, start **Command Prompt**.
+
+1. From the **Command Prompt**, run the following to change the current directory:
+
+    ```cmd
+    cd C:\Downloads\Packager
+    ```
+
 1. From the **Command Prompt**, run the following to generate a new package based on the content you modified in the previous task:
 
     ```cmd
@@ -213,7 +220,8 @@ In this task, you will:
 
 - Publish the package to Azure Stack Hub Marketplace.
 
-1. Within the Remote Desktop session to **AzS-HOST1**, from the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to install the Azure Stack Hub PowerShell modules required for this lab:
+1. Within the Remote Desktop session to **AzS-HOST1**, start PowerShell 7 as administrator.
+1. Within the Remote Desktop session to **AzS-HOST1**, from the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to install the Azure Stack Hub PowerShell modules required for this lab: 
 
     ```powershell
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -241,7 +249,7 @@ In this task, you will:
     >**Note**: This will automatically open another browser tab displaying the message informing you about successful authentication.
 
 1. Close the browser tab, switch back to the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window and verify that you have successfully authenticated as **CloudAdmin@azurestack.local**.
-1. From the Administrator: Windows PowerShell ISE window, run the following to publish the package to Azure Stack Hub Marketplace (where the `<storage_account_name>` placeholder represents the name of the storage account you assigned in the previous task):
+1. From the Administrator: **Administrator: C:\Program Files\PowerShell\7\pwsh.exe**, run the following to publish the package to Azure Stack Hub Marketplace (where the `<storage_account_name>` placeholder represents the name of the storage account you assigned in the previous task):
 
     ```powershell
     Add-AzsGalleryItem -GalleryItemUri `

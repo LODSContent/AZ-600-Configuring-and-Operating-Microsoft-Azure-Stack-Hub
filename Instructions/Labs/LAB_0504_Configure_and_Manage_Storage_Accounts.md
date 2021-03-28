@@ -149,7 +149,7 @@ In this task, you will:
     - Make this offer public: **Yes**
 
 1. Click **Next: Base plans >**. 
-1. On the **Base plans** tab of the **Create a new offer** blade, select the checkbox next to the **base-plan1** entry.
+1. On the **Base plans** tab of the **Create a new offer** blade, select the checkbox next to the **storage-plan1** entry.
 1. Click **Next: Add-on plans >**.
 1. Leave **Add-on plans** settings with their default values, click **Review + create** and then click **Create**.
 

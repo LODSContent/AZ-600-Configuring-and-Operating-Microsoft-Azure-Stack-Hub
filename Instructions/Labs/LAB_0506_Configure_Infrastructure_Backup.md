@@ -101,7 +101,8 @@ In this task, you will:
 1. Ensure that the **Administrators** entry is selected, click the **Full Control** checkbox in the **Allow** column, and then click **OK**.
 1. Back in the **Advanced Sharing** dialog box, click **OK**.
 1. Back in the **Backup Properties** window, click the **Security** tab and click **Edit**.
-1. In the **Permissions for Backup** dialog box, in the list of entries in the **Groups or user names** pane, click **AzS-BackupOperator**, in the **Permissions for AzS-BackupOperator** pane, click **Full Control** in the **Allow** column and then click **OK**.
+1. Click **Add**, in the **Select Users, Computers, Service Accounts, or Groups** dialog box, type **AzS-BackupOperator** and click **OK**.
+1. In the **Permissions for Backup** dialog box, in the list of entries in the **Groups or user names** pane, click **AzS-BackupOperator**, in the **Permissions for AzS-BackupOperator** pane, click **Full Control** in the **Allow** column and then click **OK**. 
 1. Back in the **Backup Properties** window, click **Close**.
 
 #### Task 3: Generate an encryption key
@@ -138,7 +139,7 @@ In this task, you will:
 
 1. Within the Remote Desktop session to **AzS-HOST1**, open the web browser window displaying the [Azure Stack Hub administrator portal](https://adminportal.local.azurestack.external/) and sign in as CloudAdmin@azurestack.local.
 1. In the Azure Stack Hub administrator portal, click **All services**.
-1. On the **All services** blade, select **Administration** and then select **Infrastructure backup**.
+1. On the **All services** blade, select **Administration** and then select **Infrastructure backup**. 
 1. On the **Infrastructure backup** blade, click **Configure**.
 1. On the **Backup controller settings** blade, specify the following settings and click **OK**:
 
