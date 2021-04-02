@@ -101,6 +101,7 @@ In this task, you will:
     Add-AzEnvironment -Name 'AzureStackAdmin' -ArmEndpoint 'https://adminmanagement.local.azurestack.external' `
        -AzureKeyVaultDnsSuffix adminvault.local.azurestack.external `
        -AzureKeyVaultServiceEndpointResourceId https://adminvault.local.azurestack.external
+    ```   
 
 1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to sign in to the newly registered **AzureStackAdmin** environment:
 
