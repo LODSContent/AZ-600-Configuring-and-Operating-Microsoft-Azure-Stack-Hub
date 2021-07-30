@@ -187,7 +187,7 @@ In this task, you will:
 1. On the **Data + Storage** blade, click **Storage account**.
 1. On the **Basics** tab of the **Create storage account** blade, specify the following settings:
 
-    - Subscription: **Default Provider Subscription
+    - Subscription: **Default Provider Subscription**
     - Resource group: the name of a new resource group **marketplace-pkgs-RG**
     - Name: a unique name consisting of between 3 and 24 lower case letters or digits
     - Location: **local**
