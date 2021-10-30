@@ -194,13 +194,13 @@ In this task, you will:
 
 - Run template validator against an Azure Quickstart template
 
-1. Within the Remote Desktop session to **AzS-HOST1**, from the web browser displaying the AzureStack QuickStart Templates repository, navigate to the Azure QuickStart Templates repository [**MySQL Server 5.6 on Ubuntu VM** page](https://github.com/Azure/azure-quickstart-templates/tree/master/mysql-standalone-server-ubuntu)
+1. Within the Remote Desktop session to **AzS-HOST1**, from the web browser displaying the AzureStack QuickStart Templates repository, navigate to the Azure QuickStart Templates repository [**MySQL Server 5.6 on Ubuntu VM** page](https://github.com/Azure/azure-quickstart-templates/tree/master/application-workloads/mysql/mysql-standalone-server-ubuntu)
 1. On the **MySQL Server 5.6 on Ubuntu VM** page, click **azuredeploy.json**.
-1. On the [azure-quickstart-templates/mysql-standalone-server-ubuntu/azuredeploy.json](https://github.com/Azure/azure-quickstart-templates/blob/master/mysql-standalone-server-ubuntu/azuredeploy.json) page, review the content of the template.
+1. On the [azure-quickstart-templates/mysql-standalone-server-ubuntu/azuredeploy.json](https://github.com/Azure/azure-quickstart-templates/blob/master/application-workloads/mysql/mysql-standalone-server-ubuntu/azuredeploy.json) page, review the content of the template.
 1. Switch to the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window and run the following to download the azuredeploy.json file and save it as a file named **sampletemplate2.json** in the **C:\\Templates** folder.
 
     ```powershell
-    Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mysql-standalone-server-ubuntu/azuredeploy.json' -UseBasicParsing -OutFile $path\sampletemplate2.json
+    Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-workloads/mysql/mysql-standalone-server-ubuntu/azuredeploy.json' -UseBasicParsing -OutFile $path\sampletemplate2.json
     ```
 
 1. Within the Remote Desktop session to **AzS-HOST1**, in the web browser, navigate to the REST API reference for [Virtual Machines](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachines) and identify the latest Azure API version (**2020-12-01** at the time of authoring this content). 
