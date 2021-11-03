@@ -350,7 +350,7 @@ In this task, you will:
 - Check availability of the add-on plan (as the second user)
 
 1. Within the Remote Desktop session to **AzS-HOST1**, start an InPrivate session of the web browser.
-1. In the web browser window, navigate to the [Azure Stack Hub user portal](https://portal.local.azurestack.external) and sign in as **t1u1@azurestack.local** with the password **Pa55w.rd**.
+1. In the web browser window, navigate to the [Azure Stack Hub user portal](https://portal.local.azurestack.external) and sign in as **t1u2@azurestack.local** with the password **Pa55w.rd**.
 1. In the hub menu of the Azure Stack Hub user portal, click **All services**.
 1. In the list of services, click **Subscriptions**.
 1. On the **Subscriptions** blade, click **t1u2-base-subscription1**.
