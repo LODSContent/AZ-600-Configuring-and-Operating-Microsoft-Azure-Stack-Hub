@@ -76,25 +76,6 @@ In this task, you will:
     - Password: **Pa55w.rd**
     - Password options: **Other password options -> Password never expires**
 
-
-#### Task 2: Create a tenant user account (as a cloud operator)
-
-In this task, you will:
-
-- Create a tenant user account (as a cloud operator)
-
-1. Within the Remote Desktop session to **AzS-HOST1**, in the **Active Directory Administrative Center** console, in the **Tasks** pane, in the **Users** section, click **New -> User**.
-1. In the **Create User** window, specify the following settings and click **OK**: 
-
-    - Full name: **T1U1**
-    - User UPN logon: **t1u1@azurestack.local**
-    - User SamAccountName: **azurestack\t1u1**
-    - Password: **Pa55w.rd**
-    - Password options: **Other password options -> Password never expires**
-
->**Review**: In this exercise, you have created the Active Directory accounts you will use in this lab.
-
-
 ### Exercise 1: Designate the delegated provider (as a cloud operator)
 
 In this exercise, you will act as a cloud operator and create a plan consisting of the **Subscription** service and a corresponding offer. Next, you will create a subscription containing the new offer and designate the delegated provider as its subscriber:
@@ -308,14 +289,14 @@ In this task, you will:
 >**Review**: In this exercise, you have created a delegated provider offer.
 
 
-### Exercise 4: Sign up for a delegated provider’s offer (as a tenant user)
+### Exercise 4: Sign up for a delegated providerÂ’s offer (as a tenant user)
 
-In this exercise, you will act as a tenant user who signs up for a delegated provider’s offer and creates a resource in the new subscription. The exercise consists of the following tasks:
+In this exercise, you will act as a tenant user who signs up for a delegated providerÂ’s offer and creates a resource in the new subscription. The exercise consists of the following tasks:
 
-1. Sign up for the delegated provider’s offer (as a tenant user)
+1. Sign up for the delegated providerÂ’s offer (as a tenant user)
 1. Create a resource in the new subscription (as a tenant user)
 
-#### Task 1: Sign up for the delegated provider’s offer (as a tenant user)
+#### Task 1: Sign up for the delegated providerÂ’s offer (as a tenant user)
 
 In this task, you will:
 
@@ -360,4 +341,4 @@ In this task, you will:
 
 1. Verify that the storage account has been successfully created.
 
->**Review**: In this exercise, you have subscribed to a delegated provider’s offer, creating this way a new subscription and provisioned a storage account in the new subscription.
+>**Review**: In this exercise, you have subscribed to a delegated providerÂ’s offer, creating this way a new subscription and provisioned a storage account in the new subscription.
