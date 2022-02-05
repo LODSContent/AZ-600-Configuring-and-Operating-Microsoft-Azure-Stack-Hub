@@ -49,38 +49,6 @@ You will install software necessary to manage Azure Stack Hub via PowerShell in 
 
 ## Instructions
 
-### Exercise 0: Prepare for the lab
-
-In this exercise, you will create an Active Directory user account that you will be using in this lab:
-
-1. Create a user account (as a cloud operator)
-
-#### Task 1: Create a user account (as a cloud operator)
-
-In this task, you will:
-
-- Create a user account (as a cloud operator)
-
-1. If needed, sign in to **AzS-HOST1** by using the following credentials:
-
-    - Username: **AzureStackAdmin@azurestack.local**
-    - Password: **Pa55w.rd1234**
-
-1. Within the Remote Desktop session to **AzS-HOST1**, click **Start**, in the Start menu, click **Windows Administrative Tools**, and, in the list of administrative tools, double-click **Active Directory Administrative Center**.
-1. In the **Active Directory Administrative Center** console, click **azurestack (local)**.
-1. In the details pane, double-click the **Users** container.
-1. In the **Tasks** pane, in the **Users** section, click **New -> User**.
-1. In the **Create User** window, specify the following settings and click **OK**: 
-
-    - Full name: **T1U1**
-    - User UPN logon: **t1u1@azurestack.local**
-    - User SamAccountName: **azurestack\t1u1**
-    - Password: **Pa55w.rd**
-    - Password options: **Other password options -> Password never expires**
-
->**Review**: In this exercise, you have created the Active Directory account you will use in this lab.
-
-
 ### Exercise 1: Create an offer (as a cloud operator)
 
 In this exercise, you will act as a cloud operator. First, you will review the public IP address usage, then you will create a plan consisting of the network services and an offer containing this plan. Next, you will make the offer public, allowing users to create subscriptions based on this offer. The exercise consists of the following tasks:
