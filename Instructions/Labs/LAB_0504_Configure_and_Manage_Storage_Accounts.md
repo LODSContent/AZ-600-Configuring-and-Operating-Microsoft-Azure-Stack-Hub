@@ -149,7 +149,7 @@ In this task, you will:
 1. In the list of services, click **Subscriptions**.
 1. On the **Subscriptions** blade, click **t1u1-storage-subscription1**.
 1. On the **t1u1-base-subscrption1** blade, click **Resources**.
-1. On the **t1u1-base-subscrption1 - Resources** blade, click **+ Add**.
+1. On the **t1u1-storage-subscription1 - Resources** blade, click **+ Add**.
 1. On the **New** blade, click **Data + Storage** and then click **Storage account**.
 1. On the **Basics** tab of the **Create storage account** blade, specify the following settings (leave others with their default values):
 
