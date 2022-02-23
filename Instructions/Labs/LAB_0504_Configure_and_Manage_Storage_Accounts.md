@@ -200,7 +200,7 @@ In this task, you will:
 1. Within the Remote Desktop session to **AzS-HOST1**, in the Azure Stack Hub administrator portal, while logged on as CloudAdmin@azurestack.local, on the **Storage \| Storage accounts** blade, click **Refresh**.
 1. With the name of the first storage account in the **Account name** filter text box, verify that the storage account is now listed with the **Active** status.
 1. On the **Storage \| Storage accounts** blade, in the **Account name** filter text box, type the name of the second storage account you created in the previous task and verify that the storage account name is listed with the **Deleted** status.
-1. On the **Storage \| Storage accounts** blade, click **Reclaim space** and, when prompted to confirm, click **Yes**.
+1. On the **Storage \| Storage accounts** blade, click **Reclaim space** and, when prompted to confirm, click **OK**.
 
     >**Note**: Wait for the operation to complete. This should take less than a minute.
 
