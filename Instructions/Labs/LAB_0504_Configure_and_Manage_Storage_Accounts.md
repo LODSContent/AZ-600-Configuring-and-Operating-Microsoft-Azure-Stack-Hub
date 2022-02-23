@@ -153,7 +153,7 @@ In this task, you will:
 1. On the **New** blade, click **Data + Storage** and then click **Storage account**.
 1. On the **Basics** tab of the **Create storage account** blade, specify the following settings (leave others with their default values):
 
-    - Resource group: the name of a new resource group **storage-RG**
+    - Resource group: the name of a new resource group **storageRG**
     - Name: a unique name consisting of between 3 and 24 lower case letters or digits
     - Location: **local**
     - Performance: **Standard**
