@@ -94,7 +94,7 @@ In this task, you will:
     - Max virtual network gateways: **2**
     - Max network connections: **2**
     - Max public IPs: **20**
-    - Max NICs 20**
+    - Max NICs: **20**
     - Max load balancers: **5**
     - Max network security groups: **20**
 
