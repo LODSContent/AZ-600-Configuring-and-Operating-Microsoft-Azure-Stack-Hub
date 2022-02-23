@@ -277,7 +277,7 @@ In this task, you will:
 1. On the **New** blade, click **Security + Identity** and then click **Key Vault**.
 1. On the **Basics** tab of the **Create key vault** blade, specify the following settings (leave others with their default values):
 
-    - Resource group: the name of a new resource group **kv-RG**
+    - Resource group: Select the resource group **kv-RG**
     - Key vault name: any unique name consisting of between 3 and 24 alphanumeric characters and dashes, starting with a letter
 
 1. Click **Review + create** and then click **Create**.
