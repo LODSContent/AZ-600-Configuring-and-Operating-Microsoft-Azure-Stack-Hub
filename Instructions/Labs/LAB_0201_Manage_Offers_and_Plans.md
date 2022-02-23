@@ -125,7 +125,7 @@ In this task, you will:
 
     - Display name: **base-plan2**
     - Resource name: **base-plan2**
-    - Resource group: the name of a new resource group **base-plans-RG**
+    - Resource group: select the resource group **base-plans-RG**
 
 1. Click **Next: Services >**.
 1. On the **Services** tab of the **New plan** blade, select the **Microsoft.Compute**, **Microsoft.Storage**, and **Microsoft.Network** checkboxes.
