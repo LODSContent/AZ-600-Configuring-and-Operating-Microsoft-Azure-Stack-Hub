@@ -76,6 +76,14 @@ In this task, you will:
     - Password: **Pa55w.rd**
     - Password options: **Other password options -> Password never expires**
 
+1. Repeat the step 5-6 to create another user account with the following settings: 
+
+    - Full name: **T1U1**
+    - User UPN logon: **t1u1@azurestack.local**
+    - User SamAccountName: **azurestack\t1u1**
+    - Password: **Pa55w.rd**
+    - Password options: **Other password options -> Password never expires**
+
 ### Exercise 1: Designate the delegated provider (as a cloud operator)
 
 In this exercise, you will act as a cloud operator and create a plan consisting of the **Subscription** service and a corresponding offer. Next, you will create a subscription containing the new offer and designate the delegated provider as its subscriber:
