@@ -332,7 +332,7 @@ In this task, you will:
         -Verbose
     ```
 
-1. Review the output of the validation and, in case the output still lists the template with one or more **NotSupported** entries, open the validation report by typing `C:\AzureStack-Tools-az\TemplateValidator\sampletemplate1validationreport.html` at the PoewrShell prompt and pressing the **Enter** key.
+1. Review the output of the validation and, in case the output still lists one or more **NotSupported** entries, open the validation report by typing `C:\AzureStack-Tools-az\TemplateValidator\sampletemplate1validationreport.html` at the PowerShell prompt and pressing the **Enter** key.
 1. Review the report, identify any remaining issues, make appropriate changes to the **template2.json** file, re-run the template validation again, and verify that this time there are no issues.
 
 >**Review**: In this exercise, you have created a cloud capabilities file and used it to validate Azure Resource Manager templates. You also modified a template based on the result of the validation.
