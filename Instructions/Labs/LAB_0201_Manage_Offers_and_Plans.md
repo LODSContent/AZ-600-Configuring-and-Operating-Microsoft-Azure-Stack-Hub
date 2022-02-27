@@ -60,7 +60,7 @@ In this exercise, you will create Active Directory user accounts that you will b
     - Username: **AzureStackAdmin@azurestack.local**
     - Password: **Pa55w.rd1234**
 
-1. Within the Remote Desktop session to **AzS-HOST1**, click **Start**, in the Start menu, click **Windows Administrative Tools**, and, in the list of administrative tools, double-click **Active Directory Administrative Center**.
+1. Within the Remote Desktop session to **AzS-HOST1**, click **Start**, in the Start menu, click **Windows Administrative Tools**, and, in the list of administrative tools, double-click **Active Directory Administrative Center**. Confirm when prompted whether to allow the app make changes to your device. 
 1. In the **Active Directory Administrative Center** console, click **azurestack (local)**.
 1. In the details pane, double-click the **Users** container.
 1. In the **Tasks** pane, in the **Users** section, click **New -> User**.
@@ -152,13 +152,13 @@ In this task, you will:
 1. On the **Create Network quota** blade, specify the following settings and click **OK**":
 
     - Name: **base-plan1-network-quota**
-    - Max virtual networks: **100**
-    - Max virtual network gateways: **2**
+    - Virtual networks: **100**
+    - Virtual network gateways: **2**
     - Network connections: **4**
-    - Max public IPs: **100**
-    - Max NICs: **200**
-    - Max load balancers: **100**
-    - Max network security groups: **100**
+    - Public IPs: **100**
+    - NICs: **200**
+    - Load balancers: **100**
+    - Network security groups: **100**
 
 1. Click **Review + create** and then click **Create**.
 
