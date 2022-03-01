@@ -90,13 +90,13 @@ In this task, you will:
 1. On the **Create Network quota** blade, specify the following settings and click **OK**:
 
     - Name: **Network-plan1-quota**
-    - Max virtual networks: **2**
-    - Max virtual network gateways: **2**
-    - Max network connections: **2**
-    - Max public IPs: **20**
-    - Max NICs: **20**
-    - Max load balancers: **5**
-    - Max network security groups: **20**
+    - Virtual networks: **2**
+    - Virtual network gateways: **2**
+    - Vetwork connections: **2**
+    - Public IPs: **20**
+    - NICs: **20**
+    - Load balancers: **5**
+    - Network security groups: **20**
 
 1. Click **Review + create** and then click **Create**.
 
@@ -134,8 +134,7 @@ In this task, you will:
 In this exercise, you will act as users who signs up for the offer you created in the first exercise, creates a new subscription, and creates public IP address resources in that subscription. The exercise consists of the following tasks:
 
 1. Sign up for the offer (as a user)
-1. Connect to Azure Stack Hub user Azure Resource Manager endpoint (as a user)
-1. Create IP address resources (as a user)
+1. Create an IP address resource (as a user)
 
 #### Task 1: Sign up for the offer (as a user)
 
@@ -146,96 +145,33 @@ In this task, you will:
 1. 1. Within the Remote Desktop session to **AzS-HOST1**, start an InPrivate session of the web browser.
 1. In the web browser window, navigate to the [Azure Stack Hub user portal](https://portal.local.azurestack.external) and sign in as **t1u1@azurestack.local** with the password **Pa55w.rd**.
 1. In the Azure Stack Hub user portal, on the dashboard, click **Get a subscription**.
-1. On the **Get a subscription** blade, in the **Display name** text box, type **T1U1-network-subscription1**.
+1. On the **Get a subscription** blade, in the **Name** text box, type **T1U1-network-subscription1**.
 1. In the list of offers, select **Network-offer1** and then click **Create**.
 1. In the message box **Your subscription has been created. You must refresh the portal to start using your subscription**, click **Refresh**.
 
-
-#### Task 2: Connect to Azure Stack Hub Azure Resource Manager user endpoint (as a user)
-
-In this task, you will:
-
-- Connect to Azure Stack Hub Azure Resource Manager user endpoint (as a user)
-
-1. Within the Remote Desktop session to **AzS-HOST1**, start PowerShell 7 as Administrator.
-
-    >**Note**: For detailed instructions on setting up PowerShell connectivity to Azure Stack Hub, follow instructions in the lab **Connect to Azure Stack Hub via PowerShell**.
-
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to install the Azure Stack Hub PowerShell modules required for this lab:
-
-    ```powershell
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    Install-Module -Name Az.BootStrapper -Force -AllowPrerelease -AllowClobber
-    Install-AzProfile -Profile 2019-03-01-hybrid -Force
-    Install-Module -Name AzureStack -RequiredVersion 2.0.2-preview -AllowPrerelease
-    ```
-
-    >**Note**: Disregard any error messages regarding already available commands.
-
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to download and extract the Azure Stack Hub tools:
-
-    ```powershell
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    Set-Location -Path 'C:\'
-    Invoke-WebRequest https://github.com/Azure/AzureStack-Tools/archive/az.zip -OutFile az.zip
-    Expand-Archive az.zip -DestinationPath . -Force
-    Set-Location -Path '\AzureStack-Tools-az'
-    ```
-
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to register your Azure Stack Hub user environment:
-
-    ```powershell
-    Add-AzEnvironment -Name 'AzureStackUser' -ArmEndpoint 'https://management.local.azurestack.external'
-    ```
-
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to initiate authentication to the Azure Stack Hub user environment via a browser session as the **t1u1@azurestack.local** user:
-
-    ```powershell
-    Connect-AzAccount -EnvironmentName 'AzureStackUser' -UseDeviceAuthentication
-    ```
-
-1. In the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, review the resulting message, open another web browser window in the InPrivate mode, navigate to the [adfs.local.azurestack.external](https://adfs.local.azurestack.external/adfs/oauth2/deviceauth) page, and type in the code included in the reviewed message. If prompted, sign in again as the **t1u1@azurestack.local** user.
-1. Switch back to the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window and verify that you have successfully authenticated as the **t1u1@azurestack.local** user.
-
-
-#### Task 3: Create IP address resources (as a user)
+#### Task 2: Create a public IP address (as a user)
 
 In this task, you will:
 
-- Create IP address resources (as a user)
+- Create public IP addresses by using the Azure Stack Hub user portal (as a user)
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to verify that you are using the newly provisioned subscription: 
+1. In the Azure Stack Hub user portal, on the dashboard, click **+ Create a resource**.
+1. On the **Marketplace** blade, select **Public IP address** and, on the **Public IP address** blade, select **Create**.
+1. On the **Create public IP address** blade, specify the following settngs and select **Create** (leave all others with their default values):
 
-    ```powershell
-    (Get-AzSubscription).Name
-    ```
+    - Name: **t1-pip1**
+    - IP address assignment: **Dynamic**
+    - Idle timeout (minutes): **4**
+    - DNS name label: **t1-pip1**
+    - Subscription: **T1U1-network-subscription1**
+    - Resource group: a new resource group named **publicIPs-RG**
+    - Location: **local**
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to register the Network Resource Provider within the current subscription:
+1. Wait until the IP address resource is provisioned.
 
-    ```powershell 
-    Register-AzResourceProvider -ProviderNamespace Microsoft.Network
-    ```
+>**Review**: After completing this exercise, you have created a public IP address resource in a user's subscription.
 
-    >**Note**: You have to register a resource provider in order to create resources managed by that provider.
-
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to create a resource group that will host public IP address resources:
-
-    ```powershell 
-    $rg = New-AzResourceGroup -Name publicIPs-RG -Location local
-    ```
-
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to create public IP address resources: 
-
-    ```powershell
-    1..5 | ForEach-Object {New-AzPublicIpAddress -Name "publicIP$_" -ResourceGroupName $rg.ResourceGroupName -AllocationMethod Static -Location local}
-    ```
-
-1. Wait until all IP address resources are provisioned.
-
->**Review**: After completing this exercise, you have created public IP address resources in a user's subscription.
-
-
-### Exercise 4: Manage public IP address usage (as a cloud operator)
+### Exercise 3: Manage public IP address usage (as a cloud operator)
 
 In this exercise, you will act as a cloud operator, reviewing and managing the public IP address usage. The exercise consists of the following tasks:
 
