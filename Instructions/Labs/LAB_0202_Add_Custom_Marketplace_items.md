@@ -220,19 +220,19 @@ In this task, you will:
 
 - Publish the package to Azure Stack Hub Marketplace.
 
-1. Within the Remote Desktop session to **AzS-HOST1**, start PowerShell 7 as administrator.
-1. Within the Remote Desktop session to **AzS-HOST1**, from the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to install the Azure Stack Hub PowerShell modules required for this lab: 
+1. Within the Remote Desktop session to **AzS-HOST1**, start Windows PowerShell as administrator.
+1. Within the Remote Desktop session to **AzS-HOST1**, from the **Administrator: Windows PowerShell** prompt, run the following to install the Azure Stack Hub PowerShell modules required for this lab: 
 
     ```powershell
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    Install-Module -Name Az.BootStrapper -Force -AllowPrerelease -AllowClobber
-    Install-AzProfile -Profile 2019-03-01-hybrid -Force
-    Install-Module -Name AzureStack -RequiredVersion 2.0.2-preview -AllowPrerelease
+    Install-Module -Name Az.BootStrapper -Force
+    Install-AzProfile -Profile 2020-09-01-hybrid -Force
+    Install-Module -Name AzureStack -RequiredVersion 2.2.0 
     ```
 
     >**Note**: Disregard any error messages regarding already available commands.
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to register your Azure Stack Hub operator environment:
+1. From the **Administrator: Windows PowerShell** prompt, run the following to register your Azure Stack Hub operator environment:
 
     ```powershell
     Add-AzEnvironment -Name 'AzureStackAdmin' -ArmEndpoint 'https://adminmanagement.local.azurestack.external' `
@@ -240,7 +240,7 @@ In this task, you will:
        -AzureKeyVaultServiceEndpointResourceId https://adminvault.local.azurestack.external
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to sign in to your Azure Stack Hub operator PowerShell environment with the AzureStack\CloudAdmin credentials by leveraging your existing browser session to the Azure Stack Hub administrator portal:
+1. From the **Administrator: Windows PowerShell** prompt, run the following to sign in to your Azure Stack Hub operator PowerShell environment with the AzureStack\CloudAdmin credentials by leveraging your existing browser session to the Azure Stack Hub administrator portal:
 
     ```powershell
     Connect-AzAccount -EnvironmentName 'AzureStackAdmin'
@@ -248,8 +248,8 @@ In this task, you will:
 
     >**Note**: This will automatically open another browser tab displaying the message informing you about successful authentication.
 
-1. Close the browser tab, switch back to the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window and verify that you have successfully authenticated as **CloudAdmin@azurestack.local**.
-1. From the Administrator: **Administrator: C:\Program Files\PowerShell\7\pwsh.exe**, run the following to publish the package to Azure Stack Hub Marketplace (where the `<storage_account_name>` placeholder represents the name of the storage account you assigned in the previous task):
+1. Close the browser tab, switch back to the **Administrator: Windows PowerShell** window and verify that you have successfully authenticated as **CloudAdmin@azurestack.local**.
+1. From the Administrator: **Administrator: Windows PowerShell**, run the following to publish the package to Azure Stack Hub Marketplace (where the `<storage_account_name>` placeholder represents the name of the storage account you assigned in the previous task):
 
     ```powershell
     Add-AzsGalleryItem -GalleryItemUri `

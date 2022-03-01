@@ -29,7 +29,7 @@ After completing this lab, you will be able to:
 
 The lab environment consists of the following components:
 
-- ASDK deployment running on the **AzS-HOST1** server with the following access points:
+- ASDK deployment running on the **AzSHOST-1** server with the following access points:
 
   - Administrator portal: https://adminportal.local.azurestack.external
   - Admin ARM endpoint: https://adminmanagement.local.azurestack.external
@@ -65,7 +65,7 @@ In this task, you will:
     - Username: **AzureStackAdmin@azurestack.local**
     - Password: **Pa55w.rd1234**
 
-1. Within the Remote Desktop session to **AzS-HOST1**, open the web browser window displaying the [Azure Stack Hub administrator portal](https://adminportal.local.azurestack.external/) and sign in as CloudAdmin@azurestack.local.
+1. Within the Remote Desktop session to **AzSHOST-1**, open the web browser window displaying the [Azure Stack Hub administrator portal](https://adminportal.local.azurestack.external/) and sign in as CloudAdmin@azurestack.local.
 1. In the web browser window displaying the Azure Stack Hub administrator portal, in the hub menu, click **Help + support**.
 1. On the **Overview** blade, click **Log Collection**.
 1. On the **Overview \| Log Collection** blade, click **Enable proactive log collection**.
@@ -91,7 +91,7 @@ In this task, you will:
 
 >**Note**: You will start by sending diagnostic logs on demand by using the Azure Stack Hub administration portal.
 
-1. Within the Remote Desktop session to **AzS-HOST1**, in the web browser window displaying the [Azure Stack Hub administrator portal](https://adminportal.local.azurestack.external/), in the hub menu, click **Help + support**.
+1. Within the Remote Desktop session to **AzSHOST-1**, in the web browser window displaying the [Azure Stack Hub administrator portal](https://adminportal.local.azurestack.external/), in the hub menu, click **Help + support**.
 1. On the **Overview** blade, click **Log Collection**.
 1. On the **Overview \| Log Collection** blade, click **Send logs now**.
 1. On the **Send logs now** blade, specify the following settings and click **Collect + upload**.
@@ -103,7 +103,7 @@ In this task, you will:
 
     >**Note**: Now you will configure the equivalent functionality by using Azure Stack Hub PowerShell. This requires connecting to the privileged endpoint.
 
-1. Within the Remote Desktop session to **AzS-HOST1**, start PowerShell ISE as administrator.
+1. Within the Remote Desktop session to **AzSHOST-1**, start PowerShell ISE as administrator.
 1. From the **Administrator: Windows PowerShell ISE** console, run the following to identify the IP address of the infrastructure VM running the privileged endpoint:
 
     ```powershell
@@ -135,7 +135,8 @@ In this task, you will:
 1. From the **Administrator: Windows PowerShell ISE** window, run the following to establish a PowerShell Remoting session to the privileged endpoint:
 
     ```powershell
-    Enter-PSSession -ComputerName $ipAddress -ConfigurationName PrivilegedEndpoint -Credential $adminCredentials
+    $session = New-PSSession -ComputerName $ipAddress -ConfigurationName PrivilegedEndpoint -Credential $adminCredentials
+    Enter-PSSession -Session $session
     ```
 
     >**Note**: Verify that the PowerShell Remoting session has been successfully established. The console pane in the Windows PowerShell ISE window should be displaying the prompt starting with the IP address of the infrastructure VM running the privileged endpoint enclosed in square brackets.
@@ -146,7 +147,13 @@ In this task, you will:
     Send-AzureStackDiagnosticLog -FilterByRole Storage
     ```
 
-    >**Note**: Do not wait for the upload to complete but instead proceed to the next step. The log collection will fail. This is expected since the target Azure subscription is not directly accessible from the lab environment.
+    >**Note**: Do not wait for the upload to complete but instead proceed to the next step. The log collection might fail if the target Azure subscription is not directly accessible from the lab environment.
+
+1. From the PowerShell Remoting session in the console pane of the **Administrator: Windows PowerShell ISE** window, press **Ctrl**+**C** to terminate the log collection and then run the following to exit the interactive session (without terminating it):
+
+    ```powershell
+    Exit-PSSession
+    ```
 
     >**Note**: You have the option of filtering by role as well as specify the time window for which logs should be collected. For details, refer to [Diagnostic log collection](https://docs.microsoft.com/en-us/azure/azure-stack/azure-stack-diagnostics).
 
@@ -160,7 +167,7 @@ In this task, you will:
 
 >**Note**: You will start by creating a file share to store logs.
 
-1. Within the Remote Desktop session to **AzS-HOST1**, start File Explorer. 
+1. Within the Remote Desktop session to **AzSHOST-1**, start File Explorer. 
 1. In File Explorer, create a new folder **C:\\AzSHLogs**.
 1. In File Explorer, right-click the **AzSHLogs** folder and, in the right-click menu, click **Properties**.
 1. In the **AzSHLogs Properties** window, click the **Sharing** tab and then click **Advanced Sharing**.
@@ -169,7 +176,7 @@ In this task, you will:
 1. Click **Add**, in the **Select Users, Computers, Service Accounts, or Groups** dialog box, type **CloudAdmins** and click **OK**.
 1. Ensure that the **CloudAdmins** entry is selected and click the **Full Control** checkbox in the **Allow** column.
 1. Click **Add**, in the **Select Users, Computers, Service Accounts, or Groups** dialog box, click **Locations**.
-1. In the **Locations** dialog box, click the entry representing the local computer (**AzS-HOST1**) and click **OK**.
+1. In the **Locations** dialog box, click the entry representing the local computer (**AzSHOST-1**) and click **OK**.
 1. In the **Enter the object names to select** text box, type **Administrators** and click **OK**.
 1. Ensure that the **Administrators** entry is selected, click the **Full Control** checkbox in the **Allow** column, and then click **OK**.
 1. Back in the **Advanced Sharing** dialog box, click **OK**.
@@ -180,12 +187,12 @@ In this task, you will:
 
     >**Note**: Next, you can confgure diagnostic log collection to a file share from either the Azure Stack Hub administration portal or via the privileged endpoint.
 
-1. Within the Remote Desktop session to **AzS-HOST1**, in the web browser window displaying the [Azure Stack Hub administrator portal](https://adminportal.local.azurestack.external/), in the hub menu, click **Help + support**.
+1. Within the Remote Desktop session to **AzSHOST-1**, in the web browser window displaying the [Azure Stack Hub administrator portal](https://adminportal.local.azurestack.external/), in the hub menu, click **Help + support**.
 1. On the **Overview** blade, click **Log Collection**.
 1. On the **Overview \| Log Collection** blade, click **Settings**.
 1. On the **Settings** blade, change the **Log location** option from **Azure (Recommended)** to **Local file share** and specify the following settings:
 
-    - SMB fileshare path: **\\\\AzS-HOST1.azurestack.local\\AzSHLogs**
+    - SMB fileshare path: **\\\\AzSHOST-1.azurestack.local\\AzSHLogs**
     - Username: **AZURESTACK\\AzureStackAdmin**
     - Password: **Pa55w.rd1234**
 
@@ -202,21 +209,24 @@ In this task, you will:
 
     >**Note**: Now you will configure the equivalent functionality by using Azure Stack Hub PowerShell. This requires connecting to the privileged endpoint.
 
-1. Within the Remote Desktop session to **AzS-HOST1**, switch back to the **Administrator: Windows PowerShell** console from which you connected tothe privileged endpoint in the previous task.
-1. From the PowerShell Remoting session in the console pane of the **Administrator: Windows PowerShell** window, run the following to copy Azure Stack Hub storage diagnostic logs to a local file share:
+1. Within the Remote Desktop session to **AzSHOST-1**, switch back to the **Administrator: Windows PowerShell ISE** console from which you initiated the PowerShell Remoting session to the privileged endpoint in the previous task.
+1. From the console pane of the **Administrator: Windows PowerShell ISE** window, run the following to copy Azure Stack Hub storage diagnostic logs to a local file share:
 
     ```powershell
-    Get-AzureStackLog -OutputSharePath '\\AzS-HOST1.azurestack.local\AzSHLogs' -OutputShareCredential $using:adminCredentials -FilterByRole Storage
+    Invoke-Command -Session $session { Get-AzureStackLog -OutputSharePath '\\AzSHOST-1.azurestack.local\AzSHLogs' -OutputShareCredential $using:adminCredentials -FilterByRole Storage}
     ```
 
-1. Wait until the cmdlet completes and, in File Explorer, review the content of the **C:\\AzSHLogs** folder.
+1. Wait until the cmdlet completes and, in File Explorer, review the content of the **C:\\AzSHLogs** folder to verify that the logs have been uploaded.
 
     >**Note**: The folder should contain folders corresponding to each individual copy you initiated. The folders should have the names in the format **AzureStackLogs-*YYYYMMDDHHMMSS*-AZS-ERCS01**, where ***YYYYMMDDHHMMSS*** represents the timestamp of the copy.
 
 1. From the PowerShell Remoting session prompt in the **Administrator: Windows PowerShell** window, run the following to close the session:
 
     ```powershell
-    Close-PrivilegedEndpoint -TranscriptsPathDestination '\\AzS-HOST1.azurestack.local\AzSHLogs' -Credential $using:adminCredentials
+    Enter-PSSession -$session
+    Close-PrivilegedEndpoint -TranscriptsPathDestination '\\AzSHOST-1.azurestack.local\AzSHLogs' -Credential $using:adminCredentials
     ```
+
+1. Wait until the cmdlet completes and, in File Explorer, review the content of the **C:\\AzSHLogs** folder to verify that the session transcript has been uploaded.
 
 >**Review**: In this exercise, you have established a PowerShell Remoting session to the privileged endpoint and used PowerShell cmdlets available from that endpoint to collect diagnostics logs.

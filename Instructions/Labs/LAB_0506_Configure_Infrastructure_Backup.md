@@ -67,7 +67,7 @@ In this task, you will:
     - Username: **AzureStackAdmin@azurestack.local**
     - Password: **Pa55w.rd1234**
 
-1. Within the Remote Desktop session to **AzS-HOST1**, click **Start**, in the Start menu, click **Windows Administrative Tools**, and, in the list of administrative tools, double-click **Active Directory Administrative Center**.
+1. Within the Remote Desktop session to **AzSHOST-1**, click **Start**, in the Start menu, click **Windows Administrative Tools**, and, in the list of administrative tools, double-click **Active Directory Administrative Center**.
 1. In the **Active Directory Administrative Center** console, click **azurestack (local)**.
 1. In the details pane, double-click the **Users** container.
 1. In the **Tasks** pane, in the **Users** section, click **New -> User**.
@@ -87,7 +87,7 @@ In this task, you will:
 
     >**Note**: In non-lab scenarios, this share would be external to the Azure Stack Hub deployment. You will create it directly on the Azure Stack Hub host for the simplicity sake.
 
-1. Within the Remote Desktop session to **AzS-HOST1**, start File Explorer. 
+1. Within the Remote Desktop session to **AzSHOST-1**, start File Explorer. 
 1. In File Explorer, create a new folder **C:\\Backup**.
 1. In File Explorer, right-click the **Backup** folder and, in the right-click menu, click **Properties**.
 1. In the **Backup Properties** window, click the **Sharing** tab and then click **Advanced Sharing**.
@@ -96,7 +96,7 @@ In this task, you will:
 1. Click **Add**, in the **Select Users, Computers, Service Accounts, or Groups** dialog box, type **AzS-BackupOperator** and click **OK**.
 1. Ensure that the **AzS-BackupOperator** entry is selected and click the **Full Control** checkbox in the **Allow** column.
 1. Click **Add**, in the **Select Users, Computers, Service Accounts, or Groups** dialog box, click **Locations**.
-1. In the **Locations** dialog box, click the entry representing the local computer (**AzS-HOST1**) and click **OK**.
+1. In the **Locations** dialog box, click the entry representing the local computer (**AzSHOST-1**) and click **OK**.
 1. In the **Enter the object names to select** text box, type **Administrators** and click **OK**.
 1. Ensure that the **Administrators** entry is selected, click the **Full Control** checkbox in the **Allow** column, and then click **OK**.
 1. Back in the **Advanced Sharing** dialog box, click **OK**.
@@ -113,8 +113,8 @@ In this task, you will:
 
     >**Note**: All infrastructure backups must be encrypted, so to configure an infrastructure backup you must provide a certificate corresponding to the encryption key pair. You will use Windows PowerShell to generate a key. 
 
-1. Within the Remote Desktop session to **AzS-HOST1**, start PowerShell 7 as Administrator.
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to generate the encryption key pair and the corresponding certificate:
+1. Within the Remote Desktop session to **AzSHOST-1**, start Windows PowerShell as Administrator.
+1. From the **Administrator: Windows PowerShell** prompt, run the following to generate the encryption key pair and the corresponding certificate:
     
     ```powershell
     $cert = New-SelfSignedCertificate `
@@ -137,19 +137,20 @@ In this task, you will:
 
 - Configure backup controller
 
-1. Within the Remote Desktop session to **AzS-HOST1**, open the web browser window displaying the [Azure Stack Hub administrator portal](https://adminportal.local.azurestack.external/) and sign in as CloudAdmin@azurestack.local.
+1. Within the Remote Desktop session to **AzSHOST-1**, open the web browser window displaying the [Azure Stack Hub administrator portal](https://adminportal.local.azurestack.external/) and sign in as CloudAdmin@azurestack.local.
 1. In the Azure Stack Hub administrator portal, click **All services**.
 1. On the **All services** blade, select **Administration** and then select **Infrastructure backup**. 
 1. On the **Infrastructure backup** blade, click **Configure**.
+1. On the **Backup controller settings** blade, in the **Encryption Settings** section, next to the **Certificate .cer file** text box, select the folder icon, in the **Open** dialog box, navigate to the **C:\\CertStore** folder, select the **AzSHIBPK.cer** file, and select **Open**.
+1. Back on the **Backup controller settings** blade, in the **Backup Storage Settings** section, select the **External file share** option.
 1. On the **Backup controller settings** blade, specify the following settings and click **OK**:
 
-    - Backup storage location: **\\AzS-HOST1.azurestack.local\Backup**
+    - Backup storage location: **\\AzSHOST-1.azurestack.local\Backup**
     - Username: **AzS-BackupOperator@azurestack.local**
     - Password: **Pa55w.rd**
     - Confirm password: **Pa55w.rd**
     - Backup frequency in hours: **12**
     - Retention period in days: **7**
-    - Certificate .cer file: **C:\CertStore\AzSHIBPK.cer**
 
 1. To verify that the infrastructure backup has been enabled, refresh the web browser page displaying the Azure Stack Hub administrator portal and navigate back to the **Infrastructure backup** blade.
 1. On the **Infrastructure backup** blade, review the backup settings.

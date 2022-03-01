@@ -95,31 +95,28 @@ In this task, you will:
 
     >**Note**: If you receive an error message regarding in-use modules, close the Windows PowerShell session, re-open it, and rerun the above commands.
 
-
-1. Within the Remote Desktop session to **AzS-HOST1**, start Microsoft Edge, navigate to the [PowerShell releases page](https://github.com/PowerShell/PowerShell/releases/tag/v7.1.2). 
-1. From the [PowerShell releases page](https://github.com/PowerShell/PowerShell/releases/tag/v7.1.2) page, download and install the latest release of PowerShell. 
-1. Within the Remote Desktop session to **AzS-HOST1**, start PowerShell 7 as administrator.
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to configure PowerShell Gallery as a trusted repository
+1. From the **Administrator: Windows PowerShell** prompt, run the following to configure PowerShell Gallery as a trusted repository
 
     ```powershell
     Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to install PowerShellGet:
+1. From the **Administrator: Windows PowerShell** prompt, run the following to install PowerShellGet:
 
     ```powershell
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     Install-Module PowerShellGet -MinimumVersion 2.2.3 -Force
     ```
 
     >**Note**: Disregard any warning messages regarding in-use modules.
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to install the PowerShell Az module for Azure Stack Hub:
+1. From the **Administrator: Windows PowerShell** window, run the following to install the PowerShell Az module for Azure Stack Hub:
 
     ```powershell
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    Install-Module -Name Az.BootStrapper -Force -AllowPrerelease -AllowClobber
-    Install-AzProfile -Profile 2019-03-01-hybrid -Force
-    Install-Module -Name AzureStack -RequiredVersion 2.0.2-preview -AllowPrerelease
+    Install-Module -Name Az.BootStrapper -Force
+    Install-AzProfile -Profile 2020-09-01-hybrid -Force
+    Install-Module -Name AzureStack -RequiredVersion 2.2.0
     ```
 
     >**Note**: Disregard any error messages regarding already available commands.
@@ -131,7 +128,7 @@ In this task, you will:
 
 - Download Azure Stack Hub tools from GitHub
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to download the Azure Stack Tools:
+1. From the **Administrator: Windows PowerShell** window, run the following to download the Azure Stack Tools:
 
     ```powershell
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -152,7 +149,7 @@ In this task, you will:
 - Connect to the Azure Stack Hub operator environment via PowerShell
 - Verify connection to the Azure Stack Hub operator environment via PowerShell
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to register your Azure Stack Hub operator PowerShell environment:
+1. From the **Administrator: Windows PowerShell** prompt, run the following to register your Azure Stack Hub operator PowerShell environment:
 
     ```powershell
     Add-AzEnvironment -Name 'AzureStackAdmin' -ArmEndpoint 'https://adminmanagement.local.azurestack.external' `
@@ -168,29 +165,31 @@ In this task, you will:
     AzureStackAdmin https://adminmanagement.local.azurestack.external https://adfs.local.azurestack.external/adfs/
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to sign in to your Azure Stack Hub operator PowerShell environment with the AzureStack\CloudAdmin credentials:
+1. From the **Administrator: Windows PowerShell** prompt, run the following to sign in to your Azure Stack Hub operator PowerShell environment with the AzureStack\CloudAdmin credentials:
 
     ```powershell
     Connect-AzAccount -EnvironmentName 'AzureStackAdmin' -UseDeviceAuthentication
     ```
 
-1. In the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, review the resulting message, open a web browser window, navigate to the [adfs.local.azurestack.external](https://adfs.local.azurestack.external/adfs/oauth2/deviceauth) page, type the code included in the reviewed message, and click **Continue**. 
+    >**Note**: If prompted, sign in by opening a new browser tab, navigating to the **https://adfs.local.azurestack.external/adfs/oauth2/deviceauth** page, and entering the code included in the prompt message.
 
-1. When prompted, sign in by using the following credentials:
+1. In the **Administrator: Windows PowerShell** window, review the resulting message, open a web browser window, navigate to the [adfs.local.azurestack.external](https://adfs.local.azurestack.external/adfs/oauth2/deviceauth) page, type the code included in the reviewed message, and click **Continue**. 
+
+1. If prompted, sign in by using the following credentials:
 
     - Username: **CloudAdmin@azurestack.local**
     - Password: **Pa55w.rd1234**
 
-1. Switch back to the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window and verify that you have successfully authenticated as **CloudAdmin@azurestack.local**.
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to list the Azure Stack Hub admin subscriptions
+1. Switch back to the **Administrator: Windows PowerShell** window and verify that you have successfully authenticated as **CloudAdmin@azurestack.local**.
+1. From the **Administrator: Windows PowerShell** prompt, run the following to list the Azure Stack Hub admin subscriptions
 
     ```powershell
     Get-AzSubscription
     ```
 
-    >**Note**: Verify that the output includes **Default Provider Subscription**, **Metering Subscription**, and **Consumption Subscription**.
+    >**Note**: Verify that the output includes **Default Provider Subscription**.
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to verify the corresponding PowerShell environment context:
+1. From the **Administrator: Windows PowerShell** prompt, run the following to verify the corresponding PowerShell environment context:
 
     ```powershell
     Get-AzContext
@@ -205,8 +204,8 @@ In this task, you will:
 - Connect to the Azure Stack Hub user environment via PowerShell
 - Verify connection to the Azure Stack Hub user environment via PowerShell
 
-1. Within the Remote Desktop session to **AzS-HOST1**, start PowerShell 7.
-1. From the **C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to register an Azure Resource Manager environment that targets your Azure Stack Hub user environment:
+1. Within the Remote Desktop session to **AzS-HOST1**, start Windows PowerShell.
+1. From the **Windows PowerShell** prompt, run the following to register an Azure Resource Manager environment that targets your Azure Stack Hub user environment:
 
     ```powershell
     Add-AzEnvironment -Name 'AzureStackUser' -ArmEndpoint 'https://management.local.azurestack.external'
@@ -220,7 +219,7 @@ In this task, you will:
     AzureStackUser https://management.local.azurestack.external https://adfs.local.azurestack.external/adfs/
     ```
 
-1. From the **C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to sign in to your Azure Stack Hub PowerShell environment.
+1. From the **Windows PowerShell**  prompt, run the following to sign in to your Azure Stack Hub PowerShell environment.
 
     ```powershell
     Connect-AzAccount -EnvironmentName 'AzureStackUser'
@@ -233,12 +232,12 @@ In this task, you will:
     - Username: **CloudAdmin@azurestack.local**
     - Password: **Pa55w.rd1234**
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to list the Azure Stack Hub admin subscriptions
+1. From the **Administrator: Windows PowerShell** prompt, run the following to list the Azure Stack Hub admin subscriptions
 
     ```powershell
     Get-AzSubscription
     ```
 
-    >**Note**: Verify that the output does **not** include **Default Provider Subscription**, **Metering Subscription**, and **Consumption Subscription**.
+    >**Note**: Verify that the output does **not** include **Default Provider Subscription**.
 
 >**Review**: In this exercise, you have connected to the Azure Stack Hub operator and user environments via PowerShell.

@@ -69,14 +69,14 @@ In this task, you will:
     - Username: **AzureStackAdmin@azurestack.local**
     - Password: **Pa55w.rd1234**
 
-1. Within the Remote Desktop session to **AzS-HOST1**, start PowerShell 7 as administrator.
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to configure PowerShell Gallery as a trusted repository
+1. Within the Remote Desktop session to **AzS-HOST1**, start PowerShell as administrator.
+1. From the **Administrator: WindowsPowerShell** prompt, run the following to configure PowerShell Gallery as a trusted repository
 
     ```powershell
     Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** prompt, run the following to install PowerShellGet:
+1. From the **Administrator: Windows PowerShell** prompt, run the following to install PowerShellGet:
 
     ```powershell
     Install-Module PowerShellGet -MinimumVersion 2.2.3 -Force
@@ -84,18 +84,21 @@ In this task, you will:
 
     >**Note**: Disregard any warning messages regarding in-use modules.
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to install the PowerShell Az module for Azure Stack Hub:
+1. From the **Administrator: Windows PowerShell** window, run the following to install the PowerShell Az module for Azure Stack Hub:
+
+1. Within the Remote Desktop session to **AzS-HOST1**, start Windows PowerShell as administrator.
+1. Within the Remote Desktop session to **AzS-HOST1**, from the **Administrator: Windows PowerShell** prompt, run the following to install the Azure Stack Hub PowerShell modules required for this lab: 
 
     ```powershell
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    Install-Module -Name Az.BootStrapper -Force -AllowPrerelease -AllowClobber
-    Install-AzProfile -Profile 2019-03-01-hybrid -Force
-    Install-Module -Name AzureStack -RequiredVersion 2.0.2-preview -AllowPrerelease
+    Install-Module -Name Az.BootStrapper -Force
+    Install-AzProfile -Profile 2020-09-01-hybrid -Force
+    Install-Module -Name AzureStack -RequiredVersion 2.2.0 
     ```
 
     >**Note**: Disregard any error messages regarding already available commands.
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to register your Azure Stack Hub operator PowerShell environment:
+1. From the **Administrator: Windows PowerShell** window, run the following to register your Azure Stack Hub operator PowerShell environment:
 
     ```powershell
     Add-AzEnvironment -Name 'AzureStackAdmin' -ArmEndpoint 'https://adminmanagement.local.azurestack.external' `
@@ -103,14 +106,14 @@ In this task, you will:
        -AzureKeyVaultServiceEndpointResourceId https://adminvault.local.azurestack.external
     ```   
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to sign in to the newly registered **AzureStackAdmin** environment:
+1. From the **Administrator: Windows PowerShell** window, run the following to sign in to the newly registered **AzureStackAdmin** environment:
 
     ```powershell
     Connect-AzAccount -EnvironmentName 'AzureStackAdmin'
     ```
 
-1. If prompted, authenticate with the **CloudAdmin@azurestack.local** account.
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to download the Azure Stack Tools:
+1. If prompted, authenticate with the **CloudAdmin@azurestack.local** account using the password **Pa55w.rd1234**.
+1. From the **Administrator: Windows PowerShell** window, run the following to download the Azure Stack Tools:
 
     ```powershell
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -122,13 +125,13 @@ In this task, you will:
 
     >**Note**: This step copies the archive containing the GitHub repository hosting the Azure Stack Hub tools to the local computer and expands the archive to the **C:\\AzureStack-Tools-master** folder. The tools contain PowerShell modules that offer a range of features, including validation of Azure Stack Hub Resource Manager templates. 
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to import the AzureRM.CloudCapabilities PowerShell module:
+1. From the **Administrator: Windows PowerShell** window, run the following to import the AzureRM.CloudCapabilities PowerShell module:
 
     ```powershell
     Import-Module .\CloudCapabilities\Az.CloudCapabilities.psm1 -Force
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to generate a cloud capabilities JSON file: 
+1. From the **Administrator: Windows PowerShell** window, run the following to generate a cloud capabilities JSON file: 
 
     ```powershell
     $path = 'C:\Templates'
@@ -147,20 +150,20 @@ In this task, you will:
 1. Within the Remote Desktop session to **AzS-HOST1**, start a web browser and navigate to the Azure Stack Hub QuickStart Templates repository [**MySql Server on Windows for AzureStack** page](https://github.com/Azure/AzureStack-QuickStart-Templates/tree/master/mysql-standalone-server-windows). 
 1. On the **MySql Server on Windows for AzureStack** page, click **azuredeploy.json**.
 1. On the [AzureStack-QuickStart-Templates/mysql-standalone-server-windows/azuredeploy.json](https://github.com/Azure/AzureStack-QuickStart-Templates/blob/master/mysql-standalone-server-windows/azuredeploy.json) page, review the content of the template.
-1. Switch to the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window and run the following to download the azuredeploy.json file and save it as a file named **sampletemplate1.json** in the **C:\\Templates** folder.
+1. Switch to the **Administrator: Windows PowerShell** window and run the following to download the azuredeploy.json file and save it as a file named **sampletemplate1.json** in the **C:\\Templates** folder.
 
     ```powershell
     Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/Azure/AzureStack-QuickStart-Templates/master/mysql-standalone-server-windows/azuredeploy.json' -UseBasicParsing -OutFile $path\sampletemplate1.json
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to import the AzureRM.TemplateValidator PowerShell module:
+1. From the **Administrator: Windows PowerShell** window, run the following to import the AzureRM.TemplateValidator PowerShell module:
 
     ```powershell
     Set-Location -Path 'C:\AzureStack-Tools-az\TemplateValidator'
     Import-Module .\AzureRM.TemplateValidator.psm1 -Force
     ```
   
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to validate the template:
+1. From the **Administrator: Windows PowerShell** window, run the following to validate the template:
 
     ```powershell
     Test-AzureRMTemplate `
@@ -197,14 +200,14 @@ In this task, you will:
 1. Within the Remote Desktop session to **AzS-HOST1**, from the web browser displaying the AzureStack QuickStart Templates repository, navigate to the Azure QuickStart Templates repository [**MySQL Server 5.6 on Ubuntu VM** page](https://github.com/Azure/azure-quickstart-templates/tree/master/application-workloads/mysql/mysql-standalone-server-ubuntu)
 1. On the **MySQL Server 5.6 on Ubuntu VM** page, click **azuredeploy.json**.
 1. On the [azure-quickstart-templates/mysql-standalone-server-ubuntu/azuredeploy.json](https://github.com/Azure/azure-quickstart-templates/blob/master/application-workloads/mysql/mysql-standalone-server-ubuntu/azuredeploy.json) page, review the content of the template.
-1. Switch to the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window and run the following to download the azuredeploy.json file and save it as a file named **sampletemplate2.json** in the **C:\\Templates** folder.
+1. Switch to the **Administrator: Window PowerShell** window and run the following to download the azuredeploy.json file and save it as a file named **sampletemplate2.json** in the **C:\\Templates** folder.
 
     ```powershell
     Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-workloads/mysql/mysql-standalone-server-ubuntu/azuredeploy.json' -UseBasicParsing -OutFile $path\sampletemplate2.json
     ```
 
 1. Within the Remote Desktop session to **AzS-HOST1**, in the web browser, navigate to the REST API reference for [Virtual Machines](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachines) and identify the latest Azure API version (**2020-12-01** at the time of authoring this content). 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to open the **sampletemplate2.json** file in Notepad.
+1. From the **Administrator: Windows PowerShell** window, run the following to open the **sampletemplate2.json** file in Notepad.
 
     ```powershell
     notepad.exe $path\sampletemplate2.json
@@ -244,7 +247,7 @@ In this task, you will:
 
     >**Note**: This intentionally introduces a configuration which is not yet supported in Azure Stack Hub.
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to validate the newly modified template:
+1. From the **Administrator: Windows PowerShell** window, run the following to validate the newly modified template:
 
     ```powershell
     Test-AzureRMTemplate `
@@ -316,7 +319,7 @@ In this task, you will:
     ```
 
 1. Switch to the **sampletemplate2.json** file and change the value of the REST API version you modified in the previous task to its original value. Ensure that this version matches one of the API versions in the **AzureCloudCapabilities.json** listed above and save the change.
-1. Switch to the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window and run the following to validate the newly modified template:
+1. Switch to the **Administrator: Windows PowerShell** window and run the following to validate the newly modified template:
 
     ```powershell
     Test-AzureRMTemplate `
@@ -329,6 +332,7 @@ In this task, you will:
         -Verbose
     ```
 
-1. Review the output of the validation and note that this time there are no issues.
+1. Review the output of the validation and, in case the output still lists one or more **NotSupported** entries, open the validation report by typing `C:\AzureStack-Tools-az\TemplateValidator\sampletemplate1validationreport.html` at the PowerShell prompt and pressing the **Enter** key.
+1. Review the report, identify any remaining issues, make appropriate changes to the **template2.json** file, re-run the template validation again, and verify that this time there are no issues.
 
 >**Review**: In this exercise, you have created a cloud capabilities file and used it to validate Azure Resource Manager templates. You also modified a template based on the result of the validation.
