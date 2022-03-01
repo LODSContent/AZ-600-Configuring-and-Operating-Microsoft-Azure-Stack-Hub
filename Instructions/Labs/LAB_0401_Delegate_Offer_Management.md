@@ -348,4 +348,4 @@ In this task, you will:
 
 1. Verify that the storage account has been successfully created.
 
->**Review**: In this exercise, you have subscribed to a delegated providers offer, creating this way a new subscription and provisioned a storage account in the new subscription.
+>**Review**: In this exercise, you have subscribed to a delegated provider's offer, creating this way a new subscription and provisioned a storage account in the new subscription.
