@@ -76,26 +76,26 @@ In this task, you will:
     - Username: **AzureStackAdmin@azurestack.local**
     - Password: **Pa55w.rd1234**
 
-1. Within the Remote Desktop session to **AzS-HOST1**, start PowerShell 7 as administrator.
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to establish a PowerShell Remoting session to the privileged endpoint:
+1. Within the Remote Desktop session to **AzS-HOST1**, start Windows PowerShell as administrator.
+1. From the **Administrator: Windows PowerShell** window, run the following to establish a PowerShell Remoting session to the privileged endpoint:
 
     ```powershell
     $session = New-PSSession -ComputerName AzS-ERCS01 -ConfigurationName PrivilegedEndpoint
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to create the new app registration (and service principal object) and store the reference to it in the **$spObject** variable:
+1. From the **Administrator: Windows PowerShell** window, run the following to create the new app registration (and service principal object) and store the reference to it in the **$spObject** variable:
 
     ```powershell
     $spObject = Invoke-Command -Session $session -ScriptBlock {New-GraphApplication -Name 'azsmgmt-app1' -GenerateClientSecret}
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to retrieve the Azure Stack Hub stamp information and store the reference to it in the **$azureStackInfo** variable:
+1. From the **Administrator: Windows PowerShell** window, run the following to retrieve the Azure Stack Hub stamp information and store the reference to it in the **$azureStackInfo** variable:
 
     ```powershell
     $azureStackInfo = Invoke-Command -Session $session -ScriptBlock {Get-AzureStackStampInformation}
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to terminate the PowerShell Remoting session ot the privileged endpoint:
+1. From the **Administrator: Windows PowerShell** window, run the following to terminate the PowerShell Remoting session ot the privileged endpoint:
 
     ```powershell
     $session | Remove-PSSession
@@ -103,7 +103,7 @@ In this task, you will:
 
     >**Note**: In general, you should use the **Close-PrivilegedEndpoint** cmdlet to close the privileged endpoint session. We are not following this practice for the sake of simplicity to avoid the need to set up a file share to host the session transcript logs.
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to use the Azure Stack Hub stamp information you retrieved in earlier in this task to set values of the variables you will use to configure the service principal, referencing, respectively, the Azure Stack Hub endpoint used for Azure Resource Manager user operations, audience for acquiring an OAuth token used to access Graph API, and GUID of the identity provider:
+1. From the **Administrator: Windows PowerShell** window, run the following to use the Azure Stack Hub stamp information you retrieved in earlier in this task to set values of the variables you will use to configure the service principal, referencing, respectively, the Azure Stack Hub endpoint used for Azure Resource Manager user operations, audience for acquiring an OAuth token used to access Graph API, and GUID of the identity provider:
 
     ```powershell
     $armUseEndpoint = $azureStackInfo.TenantExternalEndpoints.TenantResourceManager
@@ -111,13 +111,13 @@ In this task, you will:
     $tenantID = $azureStackInfo.AADTenantID
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to register and set the Azure Stack Hub user environment:
+1. From the **Administrator: Windows PowerShell** window, run the following to register and set the Azure Stack Hub user environment:
 
     ```powershell
     Add-AzEnvironment -Name 'AzureStackUser' -ArmEndpoint $armUseEndpoint
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to sign in as the service principal into the AzureStackUser envrionment:
+1. From the **Administrator: Windows PowerShell** window, run the following to sign in as the service principal into the AzureStackUser envrionment:
 
     ```powershell
     $securePassword = $spObject.ClientSecret | ConvertTo-SecureString -AsPlainText -Force
@@ -125,13 +125,13 @@ In this task, you will:
     $spUserSignIn = Connect-AzAccount -Environment 'AzureStackUser' -ServicePrincipal -Credential $credential -TenantId $tenantID
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to verify that the sign in was successful:
+1. From the **Administrator: Windows PowerShell** window, run the following to verify that the sign in was successful:
 
     ```powershell
     $spUserSignIn
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to remove the current authentication context:
+1. From the **Administrator: Windows PowerShell** window, run the following to remove the current authentication context:
 
     ```powershell
     Remove-AzAccount -Username $credential.UserName
@@ -139,7 +139,7 @@ In this task, you will:
 
     >**Note**: Now you will repeat the equivalent sequence of steps to validate that you can authenticate to the Azure Stack Hub administrator environment:
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to use the Azure Stack Hub stamp information you retrieved in earlier in this task to set values of the variables you will use to configure the service principal, referencing, respectively, the Azure Stack Hub endpoint used for Azure Resource Manager administrative operations, audience for acquiring an OAuth token used to access Graph API, and GUID of the identity provider:
+1. From the **Administrator: Windows PowerShell** window, run the following to use the Azure Stack Hub stamp information you retrieved in earlier in this task to set values of the variables you will use to configure the service principal, referencing, respectively, the Azure Stack Hub endpoint used for Azure Resource Manager administrative operations, audience for acquiring an OAuth token used to access Graph API, and GUID of the identity provider:
 
     ```powershell
     $armAdminEndpoint = $azureStackInfo.AdminExternalEndpoints.AdminResourceManager
@@ -147,25 +147,25 @@ In this task, you will:
     $tenantID = $azureStackInfo.AADTenantID
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to register and set the Azure Stack Hub admin environment:
+1. From the **Administrator: Windows PowerShell** window, run the following to register and set the Azure Stack Hub admin environment:
 
     ```powershell
     Add-AzEnvironment -Name 'AzureStackAdmin' -ArmEndpoint $armAdminEndpoint
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to sign in as the service principal into the AzureStackAdmin envrionment::
+1. From the **Administrator: Windows PowerShell** window, run the following to sign in as the service principal into the AzureStackAdmin envrionment::
 
     ```powershell
     $spAdminSignIn = Connect-AzAccount -Environment 'AzureStackAdmin' -ServicePrincipal -Credential $credential -TenantId $tenantID
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to verify that the sign in was successful:
+1. From the **Administrator: Windows PowerShell** window, run the following to verify that the sign in was successful:
 
     ```powershell
     $spAdminSignIn
     ```
 
-1. From the **Administrator: C:\Program Files\PowerShell\7\pwsh.exe** window, run the following to display the properties of the new service principal:
+1. From the **Administrator: Windows PowerShell** window, run the following to display the properties of the new service principal:
 
     ```powershell
     $spObject
@@ -201,7 +201,7 @@ In this task, you will:
 1. On the **Add role assignment** blade, specify the following settings and click **Save**:
 
     - Role: **Contributor**
-    - Assign access to: **Azure AD user, group, or service principal**
+    - Assign access to: **User, group, or service principal**
     - Select: search for and select the value of the **ApplicationName** property of the service principal you identified in the previous task.
 
 1. Verify that the role assignment was successful.
