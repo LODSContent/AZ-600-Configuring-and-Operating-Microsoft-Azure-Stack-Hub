@@ -101,34 +101,34 @@ In this task, you will:
     Get-Module -Name Azs.* -ListAvailable | Uninstall-Module -Force -Verbose
     Get-Module -Name Azure* -ListAvailable | Uninstall-Module -Force -Verbose
 
-    Install-Module -Name AzureRm.BootStrapper -RequiredVersion 0.5.0 -Force
-    Install-Module -Name AzureStack -RequiredVersion 1.6.0
+    Install-Module -Name Az.BootStrapper -Force
+    Install-AzProfile -Profile 2020-09-01-hybrid -Force
     ```
 
 1. From the **Administrator: Windows PowerShell** prompt, run the following to register your Azure Stack Hub operator PowerShell environment:
 
     ```powershell
-    Add-AzureRmEnvironment -Name 'AzureStackAdmin' -ArmEndpoint 'https://adminmanagement.local.azurestack.external' `
-       -AzureKeyVaultDnsSuffix adminvault.local.azurestack.external `
-       -AzureKeyVaultServiceEndpointResourceId https://adminvault.local.azurestack.external
+    Add-AzEnvironment -Name 'AzureStackAdmin' -ArmEndpoint 'https://adminmanagement.local.azurestack.external' `
+      -AzureKeyVaultDnsSuffix adminvault.local.azurestack.external `
+      -AzureKeyVaultServiceEndpointResourceId https://adminvault.local.azurestack.external
     ```
 
 1. From the **Administrator: Windows PowerShell** prompt, run the following to set the current environment:
 
     ```powershell
-    Set-AzureRmEnvironment -Name 'AzureStackAdmin'
+    Set-AzEnvironment -Name 'AzureStackAdmin'
     ```
 
 1. From the **Administrator: Windows PowerShell** prompt, run the following to authenticate to the current environment (when prompted, sign in as the **CloudAdmin@azurestack.local** user with the **Pa55w.rd1234** as its password):
 
     ```powershell
-    Connect-AzureRmAccount -EnvironmentName 'AzureStackAdmin'
+    Connect-AzAccount -EnvironmentName 'AzureStackAdmin'
     ```
 
 1. From the **Administrator: Windows PowerShell** prompt, run the following to verify that the authentiation was successful and the corresponding context is set:
 
     ```powershell
-    Get-AzureRmContext
+    Get-AzContext
     ```
 
 1. From the **Administrator: Windows PowerShell** prompt, run the following to set the variables necessary to install the SQL Server Resource Provider:
@@ -251,7 +251,7 @@ In this task, you will:
 
     >**Note**: Wait for the deployment to complete. This should take just a few seconds.
 
-1. Within the Remote Desktop session to **AzS-HOST1**, in the web browser window displaying the Azure Stack Hub administrator portal, back on the **New** blade, click **Subscription**.
+1. Within the Remote Desktop session to **AzS-HOST1**, in the web browser window displaying the Azure Stack Hub administrator portal, back on the **New** blade, in the **Offers + plans** section, click **Subscription**.
 1. On the **Create a user subscription** blade, specify the following settings and click **Create**.
 
     - Name: **sql-server-hosting-subscription1**
@@ -280,7 +280,7 @@ In this task, you will:
     - Name: **sql-host-vm0**
     - VM disk type: **Premium SSD**
     - User name: **sqladmin**
-    - Password: **Pa55w.rd**
+    - Password: **Pa55w.rd1234**
     - Subscription: **sql-server-hosting-subscription1**
     - Resource group: the name of a new resource group **sql-server-hosting-RG**
     - Location: **local**
@@ -317,7 +317,7 @@ In this task, you will:
 
     >**Note**: Wait for deployment to complete. This might take about 20 minutes.
 
-1. Once the deployment completes, navigate to the **sql-host-vm0** virtual machine blade and, in the **Overview** section, directly under the **DNS name** labe, click **Configure**.
+1. Once the deployment completes, navigate to the **sql-host-vm0** virtual machine blade and, in the **Overview** section, directly under the **DNS name** label, click **Configure**.
 1. On the **sql-host-vm0-ip \| Configuration** blade, in the **DNS name label (optional)** text box, type **sql-host-vm0** and click **Save**.
 
     >**Note**: This makes the **sql-host-vm0** available via **sql-host-vm0.local.cloudapp.azurestack.external** DNS name.
@@ -342,7 +342,7 @@ In this task, you will:
 
     - SQL Server Name: **sql-host-vm0.local.cloudapp.azurestack.external**
     - Username: **sqladmin**
-    - Password: **Pa55w.rd**
+    - Password: **Pa55w.rd1234**
     - Size of Hosting Server in GB: **50**
     - Always On Availability Group: unchecked
     - Subscription: **Default Provider Subscription**
@@ -440,7 +440,7 @@ In this task, you will:
     - Database Name: **sqldb1**
     - Collation: **SQL_Latin1_General_CP1_CI_AS**
     - Max Size in MB: **200**
-    - Subscription: ****t1u1-sqldb-subscription1**
+    - Subscription: **t1u1-sqldb-subscription1**
     - Resource Group: the name of a new resource group **sqldb-RG**
     - Location: **local**
     - SKU: **MSSQL2017Exp**
@@ -456,6 +456,6 @@ In this task, you will:
 
 1. Back on the **Create Database** blade, click **Create**.
 
-    >**Note**: Wait for the deployment to complete. This should take less than a minute. 
+>**Note**: Wait for the deployment to complete. This should take less than a minute. 
 
 >**Review**: In this exercise, you have added a SQL Server hosting server to Azure Stack Hub, made it available to tenants, and deployed a SQL database as a tenant user.
