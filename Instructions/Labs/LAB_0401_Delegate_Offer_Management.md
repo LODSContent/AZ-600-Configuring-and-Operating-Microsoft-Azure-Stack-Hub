@@ -296,7 +296,7 @@ In this task, you will:
 >**Review**: In this exercise, you have created a delegated provider offer.
 
 
-### Exercise 4: Sign up for a delegated providers offer (as a tenant user)
+### Exercise 4: Sign up for a delegated provider's offer (as a tenant user)
 
 In this exercise, you will act as a tenant user who signs up for a delegated provider's offer and creates a resource in the new subscription. The exercise consists of the following tasks:
 
