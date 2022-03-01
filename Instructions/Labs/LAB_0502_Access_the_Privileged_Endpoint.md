@@ -128,8 +128,7 @@ In this task, you will:
     ```powershell
     Test-AzureStack -Group UpdateReadiness 
     ```
-
-    >**Note**: Keep in mind that ASDK does not support updates, so this is strictly for demonstration purposes. 
+    >**Note**: Keep in mind that ASDK does not support updates, so this is strictly for demonstration purposes. Disregard any failed tests being reported.
 
     >**Note**: For an introduction to the **Test-AzureStack** functionality, refer to [Validate Azure Stack Hub system state](https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-diagnostic-test?view=azs-2008).
 
@@ -174,9 +173,11 @@ In this task, you will:
 1. Switch back to the PowerShell Remoting session in the **Administrator: Windows PowerShell ISE** window, run the following to close the privileged endpoint session and transfers the session log files to an external file share for retention:
 
     ```powershell
-    Close-PrivilegedEndpoint -TranscriptsPathDestination '\\AzS-HOST1.azurestack.local\PEPLogs' -Credential $using:adminCredentials
+    Close-PrivilegedEndpoint -TranscriptsPathDestination '\\AzSHOST-1.azurestack.local\PEPLogs' -Credential $using:adminCredentials
     ```
 
-1. Wait until the cmdlet completes and, in File Explorer, review the content of the **C:\\PEPLogs** folder.
+    >**Note**: Disregard any warning messages.
+
+1. Wait until the cmdlet completes and, in File Explorer, review the content of the **C:\\PEPLogs** folder. 
 
 >**Review**: In this exercise, you have established a PowerShell Remoting session to the privileged endpoint, reviewed its functionality, and closed the session.
