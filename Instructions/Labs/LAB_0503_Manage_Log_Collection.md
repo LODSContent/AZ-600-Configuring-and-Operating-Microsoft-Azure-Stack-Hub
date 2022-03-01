@@ -216,14 +216,17 @@ In this task, you will:
     Invoke-Command -Session $session { Get-AzureStackLog -OutputSharePath '\\AzSHOST-1.azurestack.local\AzSHLogs' -OutputShareCredential $using:adminCredentials -FilterByRole Storage}
     ```
 
-1. Wait until the cmdlet completes and, in File Explorer, review the content of the **C:\\AzSHLogs** folder.
+1. Wait until the cmdlet completes and, in File Explorer, review the content of the **C:\\AzSHLogs** folder to verify that the logs have been uploaded.
 
     >**Note**: The folder should contain folders corresponding to each individual copy you initiated. The folders should have the names in the format **AzureStackLogs-*YYYYMMDDHHMMSS*-AZS-ERCS01**, where ***YYYYMMDDHHMMSS*** represents the timestamp of the copy.
 
 1. From the PowerShell Remoting session prompt in the **Administrator: Windows PowerShell** window, run the following to close the session:
 
     ```powershell
+    Enter-PSSession -$session
     Close-PrivilegedEndpoint -TranscriptsPathDestination '\\AzSHOST-1.azurestack.local\AzSHLogs' -Credential $using:adminCredentials
     ```
+
+1. Wait until the cmdlet completes and, in File Explorer, review the content of the **C:\\AzSHLogs** folder to verify that the session transcript has been uploaded.
 
 >**Review**: In this exercise, you have established a PowerShell Remoting session to the privileged endpoint and used PowerShell cmdlets available from that endpoint to collect diagnostics logs.
