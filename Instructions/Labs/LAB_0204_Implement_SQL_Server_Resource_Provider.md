@@ -456,6 +456,6 @@ In this task, you will:
 
 1. Back on the **Create Database** blade, click **Create**.
 
-    >**Note**: Wait for the deployment to complete. This should take less than a minute. 
+>**Note**: Wait for the deployment to complete. This should take less than a minute. 
 
 >**Review**: In this exercise, you have added a SQL Server hosting server to Azure Stack Hub, made it available to tenants, and deployed a SQL database as a tenant user.
