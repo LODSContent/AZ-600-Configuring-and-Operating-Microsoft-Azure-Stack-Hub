@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'Lab: Delegate Offer Management in Azure Stack Hub'
     module: 'Module 4: Manage Identity and Access'
@@ -192,8 +192,8 @@ In this task, you will:
 1. On the **Create Storage quota** blade, specify the following settings and click **OK**:
 
     - Name: **co-services1-storage-quota**
-    - Maximum capacity (GB): **200**
-    - Total number of storage accounts: **1**
+    - Capacity (GB): **200**
+    - Number of storage accounts: **1**
 
 1. Click **Review + create** and then click **Create**.
 
@@ -270,8 +270,7 @@ This will allow tenants to create a subscription based on the offer from the del
     - Provider subscription: **dp1-subscription1**
     - Resource group: the name of a new resource group **dp1-RG**
 
-1. Click **Delegated** offer.
-1. On the **Delegated offer** blade, click **cotodp-services1-offer**.
+1. In the **Select the public offer** section, click **cotodp-services1-offer**.
 1. Back on the **Create a new offer** blade, click **Create**.
 
     >**Note**: Wait for the deployment to complete. This should take just a few seconds.
@@ -289,7 +288,7 @@ In this task, you will:
 1. In the Azure Stack Hub user portal, while signed in as **dp1@azurestack.local**, in the hub menu, click **All services** and, on the **All services** blade, in the list of services, click **Subscriptions**.
 1. On the **Subscriptions** blade, click **dp1-subscription1**.
 1. On the **dp1-subscription1** delegated provider subscription blade, click **Properties**.
-1. On the properties blade, copy the value of the **Portal URL** to clipboard. You will need it in the next exercise of this lab, 
+1. On the properties blade, copy the value of the **Portal URL** to clipboard. You will need it in the next exercise of this lab.
 1. In the Azure Stack Hub user portal, in the upper right corner, click the user avatar icon and, in the drop-down menu, click **Sign out**.
 
     >**Note**: Tenants need to subscribe to the offer from the delegated provider portal URL.
