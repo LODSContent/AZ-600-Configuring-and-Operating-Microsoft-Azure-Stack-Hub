@@ -188,7 +188,7 @@ In this task, you will:
 1. In the Azure Stack Hub administrator portal, in the hub menu, click **Dashboard** and, on the **Resource providers** tile, click **Network**.
 1. On the **Network** blade, review again the **Public IP pools usage** graph and the numbers of used and free IP addresses.
 
-    >**Note**: The numbers should have changed, reflecting additional 5 public IP addresses you created in the user subscription (as the user).
+    >**Note**: The numbers should have changed, reflecting an additional public IP address you created in the user subscription (as the user).
 
 #### Task 2: Add a public IP address pool (as a cloud operator)
 
