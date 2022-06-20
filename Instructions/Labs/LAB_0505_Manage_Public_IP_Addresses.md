@@ -92,7 +92,7 @@ In this task, you will:
     - Name: **Network-plan1-quota**
     - Virtual networks: **2**
     - Virtual network gateways: **2**
-    - Vetwork connections: **2**
+    - Network connections: **2**
     - Public IPs: **20**
     - NICs: **20**
     - Load balancers: **5**
