@@ -142,7 +142,6 @@ In this task, you will:
 1. On the **All services** blade, select **Administration** and then select **Infrastructure backup**. 
 1. On the **Infrastructure backup** blade, click **Configure**.
 1. On the **Backup controller settings** blade, in the **Encryption Settings** section, next to the **Certificate .cer file** text box, select the folder icon, in the **Open** dialog box, navigate to the **C:\\CertStore** folder, select the **AzSHIBPK.cer** file, and select **Open**.
-1. Back on the **Backup controller settings** blade, in the **Backup Storage Settings** section, select the **External file share** option.
 1. On the **Backup controller settings** blade, specify the following settings and click **OK**:
 
     - Backup storage location: **\\AzSHOST-1.azurestack.local\Backup**
