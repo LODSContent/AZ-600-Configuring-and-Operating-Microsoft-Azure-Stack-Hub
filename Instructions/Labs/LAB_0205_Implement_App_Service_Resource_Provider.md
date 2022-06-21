@@ -86,7 +86,7 @@ In this task, you will:
     - Name: **SqlHOST1**
     - VM disk type: **Premium SSD**
     - User name: **sqladmin**
-    - Password: **Pa55w.rd**
+    - Password: **Pa55w.rd1234**
     - Subscription: **Default Provider Subscription**
     - Resource group: the name of a new resource group **sql.resources-RG**
     - Location: **local**
@@ -114,7 +114,7 @@ In this task, you will:
     - Port: **1433**
     - SQL Authentication: **Enable**
     - Login name: **SQLAdmin**
-    - Password: **Pa55w.rd**
+    - Password: **Pa55w.rd1234**
     - Storage configuration: **General**
     - Automated patching: **Disable**
     - Automated backup: **Disable**
