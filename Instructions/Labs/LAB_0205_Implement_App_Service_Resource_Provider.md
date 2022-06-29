@@ -124,7 +124,7 @@ In this task, you will:
 
     >**Note**: Wait for deployment to complete. This might take about 20 minutes.
 
-1. Once the deployment completes, navigate to the **SqlHOST1** virtual machine blade and, in the **Overview** section, directly under the **DNS name** labe, click **Configure**.
+1. Once the deployment completes, navigate to the **SqlHOST1** virtual machine blade and, in the **Overview** section, directly under the **DNS name** label, click **Configure**.
 1. On the **SqlHOST1-ip \| Configuration** blade, in the **DNS name label (optional)** text box, type **sqlhost1** and click **Save**.
 
     >**Note**: This makes the **sqlhost1** available via **sqlhost1.local.cloudapp.azurestack.external** DNS name.
@@ -136,7 +136,7 @@ In this task, you will:
 1. Within the Remote Desktop session to **AzSHOST-1**, start a Remote Desktop session to **sqlhost1.local.cloudapp.azurestack.external** and, when prompted, sign in using the following credentials:
 
     - Username: **SQLAdmin**
-    - Password: **Pa55w.rd**
+    - Password: **Pa55w.rd1234**
 
 1. Within the Remote Desktop session to **SqlHOST1**, right-click **Start** and, in the right-click menu, select **Command Prompt (Admin)**. 
 1. Within the Remote Desktop session to **SqlHOST1**, from the **Administrator: Command Prompt**, run the following to start a SQLCMD session to the local SQL Server instance:
