@@ -138,7 +138,7 @@ In this task, you will:
     Set-Location -Path '\AzureStack-Tools-az'
     ```
 
-    >**Note**: This step copies the archive containing the GitHub repository hosting the Azure Stack Hub tools to the local computer and expands the archive to the **C:\\AzureStack-Tools-master** folder. The tools contain PowerShell modules that offer a range of features, including identifying Azure Stack Hub capabilities, managing Azure Stack Hub VM infrastructure and images, configuring Resource Manager policies, registering Azure Stack Hub with Azure, Azure Stack Hub deployment, connectivity to Azure Stack Hub, Azure Stack Hub tenant management, and validation of Azure Stack Hub Resource Manager templates. 
+    >**Note**: This step copies the archive containing the GitHub repository hosting the Azure Stack Hub tools to the local computer and expands the archive to the **C:\\AzureStack-Tools-az** folder. The tools contain PowerShell modules that offer a range of features, including identifying Azure Stack Hub capabilities, managing Azure Stack Hub VM infrastructure and images, configuring Resource Manager policies, registering Azure Stack Hub with Azure, Azure Stack Hub deployment, connectivity to Azure Stack Hub, Azure Stack Hub tenant management, and validation of Azure Stack Hub Resource Manager templates. 
 
 
 #### Task 3: Configure and connect to the Azure Stack Hub operator environment via PowerShell
