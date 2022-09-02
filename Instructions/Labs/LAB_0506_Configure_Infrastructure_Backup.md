@@ -144,7 +144,7 @@ In this task, you will:
 1. On the **Backup controller settings** blade, in the **Encryption Settings** section, next to the **Certificate .cer file** text box, select the folder icon, in the **Open** dialog box, navigate to the **C:\\CertStore** folder, select the **AzSHIBPK.cer** file, and select **Open**.
 1. On the **Backup controller settings** blade, specify the following settings and click **OK**:
 
-    - Backup storage location: **\\AzSHOST-1.azurestack.local\Backup**
+    - Backup storage location: **\\\\AzSHOST-1.azurestack.local\Backup**
     - Username: **AzS-BackupOperator@azurestack.local**
     - Password: **Pa55w.rd**
     - Confirm password: **Pa55w.rd**
