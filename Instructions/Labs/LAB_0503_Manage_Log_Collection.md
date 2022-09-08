@@ -223,7 +223,7 @@ In this task, you will:
 1. From the PowerShell Remoting session prompt in the **Administrator: Windows PowerShell** window, run the following to close the session:
 
     ```powershell
-    Enter-PSSession -$session
+    Enter-PSSession -Session $session
     Close-PrivilegedEndpoint -TranscriptsPathDestination '\\AzSHOST-1.azurestack.local\AzSHLogs' -Credential $using:adminCredentials
     ```
 
