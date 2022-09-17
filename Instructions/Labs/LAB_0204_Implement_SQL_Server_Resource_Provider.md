@@ -76,7 +76,8 @@ In this task, you will:
 1. Within the Remote Desktop session to **AzSHOST-1**, in the web browser displaying the Azure Stack administrator portal, in the hub menu, click **All services**.
 1. On the **All services** blade, search for and select **Marketplace management**
 1. On the Marketplace management blade, verify that **Microsoft AzureStack Add-On RP Windows Server** appears in the list of available services.
-1. Within the Remote Desktop session to **AzSHOST-1**, start another web browser window, download the SQL Resource Provider self-extracting executable from (https://aka.ms/azshsqlrp11931) and extract its content into the **C:\\Downloads\\SQLRP** folder (you will need to create the folder first).
+1. Within the Remote Desktop session to **AzSHOST-1**, start another web browser window, download the SQL Resource Provider self-extracting executable from [https://aka.ms/azshsqlrp11931](https://aka.ms/azshsqlrp11931).
+1. Execute the file, set the **Destination folder** to **C:\\Downloads\\SQLRP** and then click **Extract** button.
 
 
 #### Task 2: Install the SQL Server resource provider
@@ -89,46 +90,28 @@ In this task, you will:
 
     > **Note:** Make sure to start a new PowerShell session.
 
-1. From the **Administrator: Windows PowerShell** prompt, run the following to configure PowerShell Gallery as a trusted repository
+
+1. From the **Administrator: Windows PowerShell**, run the following command from a PowerShell session to update PowerShellGet to a minimum of version 2.2.3
 
     ```powershell
-    Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    Install-Module PowerShellGet -MinimumVersion 2.2.3 -Force
     ```
+    
+1. Close **all** PowerShell session, so that update can take effect.
 
 1. From the **Administrator: Windows PowerShell** prompt, run the following to install the version of the AzureRM.Bootstrapper module required by the SQL Server resource provider:
 
     ```powershell
-    Get-Module -Name Azs.* -ListAvailable | Uninstall-Module -Force -Verbose
-    Get-Module -Name Azure* -ListAvailable | Uninstall-Module -Force -Verbose
+    Get-Module -Name Azs.* -ListAvailable | Uninstall-Module -Force -Verbose  -ErrorAction Continue
+    Get-Module -Name Azure* -ListAvailable | Uninstall-Module -Force -Verbose  -ErrorAction Continue
 
+
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
     Install-Module -Name Az.BootStrapper -Force
     Install-AzProfile -Profile 2020-09-01-hybrid -Force
-    ```
-
-1. From the **Administrator: Windows PowerShell** prompt, run the following to register your Azure Stack Hub operator PowerShell environment:
-
-    ```powershell
-    Add-AzEnvironment -Name 'AzureStackAdmin' -ArmEndpoint 'https://adminmanagement.local.azurestack.external' `
-      -AzureKeyVaultDnsSuffix adminvault.local.azurestack.external `
-      -AzureKeyVaultServiceEndpointResourceId https://adminvault.local.azurestack.external
-    ```
-
-1. From the **Administrator: Windows PowerShell** prompt, run the following to set the current environment:
-
-    ```powershell
-    Set-AzEnvironment -Name 'AzureStackAdmin'
-    ```
-
-1. From the **Administrator: Windows PowerShell** prompt, run the following to authenticate to the current environment (when prompted, sign in as the **CloudAdmin@azurestack.local** user with the **Pa55w.rd1234** as its password):
-
-    ```powershell
-    Connect-AzAccount -EnvironmentName 'AzureStackAdmin'
-    ```
-
-1. From the **Administrator: Windows PowerShell** prompt, run the following to verify that the authentiation was successful and the corresponding context is set:
-
-    ```powershell
-    Get-AzContext
+    Install-Module -Name AzureStack -RequiredVersion 2.2.0 -SkipPublisherCheck
     ```
 
 1. From the **Administrator: Windows PowerShell** prompt, run the following to set the variables necessary to install the SQL Server Resource Provider:
@@ -144,7 +127,7 @@ In this task, you will:
     $serviceAdminCreds = New-Object System.Management.Automation.PSCredential ($serviceAdmin, $serviceAdminPass)
 
     # Set the AzureStack\CloudAdmin credentials
-    $cloudAdminName = 'AzureStack\CloudAdmin'
+    $cloudAdminName = 'CloudAdmin@azurestack.local'
     $cloudAdminPass = ConvertTo-SecureString 'Pa55w.rd1234' -AsPlainText -Force
     $cloudAdminCreds = New-Object PSCredential($cloudAdminName, $cloudAdminPass)
 
@@ -160,7 +143,7 @@ In this task, you will:
     $env:PSModulePath = $env:PSModulePath + ';' + $rpModulePath 
     ```
 
-1. From the **Administrator: Windows PowerShell** prompt, change the current directory to the location of the extracted SQL Server resource provider installation files and run the DeploySQLProvider.ps1 script:
+1. From the **Administrator: Windows PowerShell** prompt, change the current directory to the location of the extracted SQL Server resource provider installation files and run the DeploySQLProvider.ps1 script (when prompted, sign in as the **CloudAdmin@azurestack.local** user with the **Pa55w.rd1234** as its password):
 
     ```powershell
     Set-Location -Path 'C:\Downloads\SQLRP'
