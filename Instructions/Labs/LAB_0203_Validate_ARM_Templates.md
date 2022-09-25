@@ -80,6 +80,7 @@ In this task, you will:
 
     ```powershell
     Install-Module PowerShellGet -MinimumVersion 2.2.3 -Force
+    Update-Module PowerShellGet -Force
     ```
 
     >**Note**: Disregard any warning messages regarding in-use modules.
