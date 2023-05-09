@@ -1,3 +1,5 @@
+**This course will be retiring on  **2023/7/31**.  Once course is retired, all GitHub repos will be removed. Thank you.**
+
 # AZ-600: Configuring and Operating Microsoft Azure Stack Hub
 
 - **[Download Latest Student Handbook and AllFiles Content](../../releases/latest)**
